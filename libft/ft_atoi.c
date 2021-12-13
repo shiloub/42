@@ -6,9 +6,11 @@
 /*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:21:25 by amontant          #+#    #+#             */
-/*   Updated: 2021/11/22 12:21:30 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/13 14:36:49 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isnum(char c)
 {
@@ -18,7 +20,7 @@ int	ft_isnum(char c)
 		return (0);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *nptr)
 {
 	int	i;
 	int	neg;
@@ -27,17 +29,17 @@ int	ft_atoi(char *str)
 	i = 0;
 	nbr = 0;
 	neg = 1;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (str[i] == '-')
+		if (nptr[i] == '-')
 			neg = -1;
 		i++;
 	}
-	while (ft_isnum(str[i]))
+	while (ft_isnum(nptr[i]))
 	{
-		nbr = (nbr * 10) + (str[i] - '0');
+		nbr = (nbr * 10) + (nptr[i] - '0');
 		i++;
 	}
 	return (nbr * neg);

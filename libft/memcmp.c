@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:40:38 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/13 14:30:16 by amontant         ###   ########.fr       */
+/*   Created: 2021/11/22 12:32:22 by amontant          #+#    #+#             */
+/*   Updated: 2021/12/12 15:20:43 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t size)
+size_t	ft_memsize(const char *s, size_t n)
 {
-	size_t		i;
-	size_t		j;
-	int		where;
-	char		*p;
+	size_t	i;
+	size_t	memsize;
 
-	p = (char *)s1;
 	i = 0;
-	if (s2[0] == '\0')
-		return (&p[0]);
-	while (s1[i] && i < size)
+	memsize = 0;
+	while (s[i] && i < n)
 	{
-		j = 0;
-		if (s1[i] == s2[j])
-			where = i;
-		while (s2[j] && (s1[i] == s2[j]))
-		{
-			i++;
-			j++;
-		}
-		if (s2[j] == '\0' && i <= size)
-			return (&p[where]);
-		if (j > 0)
-			i = where;
+		if (s[i] >= 0)
+			memsize += s[i];
+		else
+			memsize -= s[i];
 		i++;
 	}
-	return (0);
+	return (memsize);
+}
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const char	*s1_;
+	const char	*s2_;
+	int			s1size;
+	int			s2size;
+
+	s1_ = s1;
+	s2_ = s2;
+	s1size = ft_memsize(s1_, n);
+	s2size = ft_memsize(s2_, n);
+	return (s1size - s2size);
 }

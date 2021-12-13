@@ -6,16 +6,16 @@
 /*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:38:33 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/12 15:35:57 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:42:46 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *dest, const char *src, int n)
+char	*ft_strncat(char *dest, const char *src, size_t n)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

@@ -6,15 +6,15 @@
 /*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:40:24 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/12 14:44:58 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:12:06 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strsize(const char *str, int n)
+int	ft_strsize(const char *str, size_t n)
 {
-	int	i;
+	size_t	i;
 	int	size;
 
 	size = 0;

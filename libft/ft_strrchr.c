@@ -6,7 +6,7 @@
 /*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:40:54 by amontant          #+#    #+#             */
-/*   Updated: 2021/11/22 12:40:56 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:07:32 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strrchr(const char *s, int c)
 	int		cursor;
 	int		find;
 
+	while (c >= 256)
+		c -= 256;
 	i = 0;
 	p = (char *)s;
 	find = 0;

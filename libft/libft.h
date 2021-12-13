@@ -17,7 +17,7 @@ int				ft_isdigit(char c);
 int				ft_isascii(char c);
 int				ft_isalnum(char c);
 int				ft_isprint(char c);
-int				ft_atoi(char *str);
+int				ft_atoi(const char *nptr);
 void				ft_bzero(void *s, size_t t);
 size_t				ft_strlcat(char *dest, const char *src, size_t n);
 char			*ft_strchr(const char *str, int c);
@@ -53,4 +53,5 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 #endif
