@@ -15,7 +15,7 @@
 int	ft_strsize(const char *str, size_t n)
 {
 	size_t	i;
-	int	size;
+	int		size;
 
 	size = 0;
 	i = 0;

@@ -25,7 +25,7 @@ size_t	ft_memsize(const char *s, size_t n)
 			memsize += s[i];
 		else
 			memsize -= s[i];
-		i++;
+			i++;
 	}
 	return (memsize);
 }
@@ -34,8 +34,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	const char	*s1_;
 	const char	*s2_;
-	int			s1size;
-	int			s2size;
+	int		s1size;
+	int		s2size;
 
 	s1_ = s1;
 	s2_ = s2;

@@ -49,10 +49,11 @@ char	*ft_itoa(int value)
 	n = checkneg(value, &neg);
 	i = n;
 	count = intsize(i);
-	str = malloc(sizeof(char) * (count + neg));
+	str = malloc(sizeof(char) * ((count + neg) + 1));
 	if (!str)
 		return (0);
 	i = 0;
+	str[count + neg] = '\0';
 	while (count > 0)
 	{
 		str[count - 1 + neg] = '0' + n % 10;

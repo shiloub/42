@@ -6,13 +6,13 @@
 /*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:23:14 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/13 14:31:54 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:07:49 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(char c)
+int	ft_isascii(int c)
 {
-	if (c >= 0 && c <= 127)
+	if (c >= 0 && c < 128)
 		return (1);
 	else
 		return (0);
