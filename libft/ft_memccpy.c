@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:31:58 by amontant          #+#    #+#             */
-/*   Updated: 2021/11/22 12:32:00 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:23:12 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-void	*ft_memccpy(void *dest, const void *src, int c, int n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	int			i;
+	size_t		i;
 	const char	*src_;
 	char		*dest_;
 
