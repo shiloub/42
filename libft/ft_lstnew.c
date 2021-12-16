@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:31:28 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/16 12:06:50 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:26:01 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list *));
+	new = malloc(sizeof(t_list));
 	if (!new)
 		return (NULL);
 	new->content = content;

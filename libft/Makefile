@@ -35,30 +35,30 @@ SRC = ft_memset.c\
       ft_putnbr_fd.c\
       ft_strmapi.c\
       ft_split.c\
-      ft_lstnew.c\
-      ft_lstadd_front.c\
-      ft_lstsize.c\
-      ft_lstlast.c\
-      ft_lstadd_back.c\
-      ft_lstdelone.c\
-      ft_lstclear.c\
-      ft_lstiter.c\
-      ft_lstmap.c\
       ft_striteri.c
 
+BONUS	=     ft_lstnew.c \
+            ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+	      ft_lstmap.c \
 OBJ = $(SRC:.c=.o)
+
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	ar crs $@ $^
 
+bonus:
+			$(CC) $(FLAGS) -c $(SRCS) $(BONUS)
+			ar rc $(NAME) $(OBJS) $(BONUS:.c=.o)
+
 %.o : %.c
 	$(CC) -o $@ -c $^ $(CFLAGS) 
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
-
 
 clean :
 	rm -rf *.o
