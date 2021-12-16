@@ -44,7 +44,7 @@ SRC = ft_memset.c\
       ft_lstclear.c\
       ft_lstiter.c\
       ft_lstmap.c\
-	  ft_striteri.c
+      ft_striteri.c
 
 OBJ = $(SRC:.c=.o)
 all : $(NAME)
@@ -54,6 +54,11 @@ $(NAME) : $(OBJ)
 
 %.o : %.c
 	$(CC) -o $@ -c $^ $(CFLAGS) 
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
+
 
 clean :
 	rm -rf *.o

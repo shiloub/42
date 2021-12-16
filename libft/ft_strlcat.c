@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:38:33 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/13 13:42:46 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:05:45 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t n)
+char	*blup(char *dest, const char *src, size_t n)
 {
 	size_t	i;
 	size_t	j;
@@ -48,7 +48,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		return (srclen + size);
 	else
 	{
-		dest = ft_strncat(dest, src, size);
+		dest = blup(dest, src, size);
 	}
 	return (destlen + srclen);
 }
