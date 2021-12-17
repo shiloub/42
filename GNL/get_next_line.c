@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:34:47 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/16 18:33:56 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/17 21:00:34 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*save_until_cr(char *str)
 		i++;
 	}
 	if (str[i] == '\n')
-		str[i + 1] == 0;
+		str[i + 1] = 0;
 	return (str);
 }
 
@@ -78,13 +78,12 @@ char	*get_next_line(int fd)
 	save_after_cr(buff);
 	return (newline);
 }
-int main()
+/*int main()
 {
 	int i = 0;
 	char *str;
 	int fd;
 	fd = open("text.txt", O_RDONLY);
-	printf(NULL);
 	str = get_next_line(fd);
 	printf("%s", str);
 	str = get_next_line(fd);
@@ -106,4 +105,4 @@ int main()
 	
 	return 0;
 
-}
+}*/

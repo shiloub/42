@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 1000
+#define BUFFER_SIZE 1
 
 char	*ft_strjoin(char const *s1, char const *s2);
 int ft_strlen(char *str);
