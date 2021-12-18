@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:34:47 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/17 21:00:34 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/18 16:30:26 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ char	*get_next_line(int fd)
 		free(newline);
 		return (NULL);
 	}
-	newline = ft_strjoin(newline, buff);
+	newline = ft_strjoin_f(newline, buff);
 	while (ft_strchr(buff, '\n') == 0)
 	{
 		fin = read(fd, buff, BUFFER_SIZE);
 		buff[fin + 1] = '\0';
-		newline = ft_strjoin(newline, buff);
+		newline = ft_strjoin_f(newline, buff);
 	}
 	newline = save_until_cr(newline);
 	save_after_cr(buff);

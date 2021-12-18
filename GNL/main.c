@@ -6,7 +6,7 @@
 /*   By: anremiki <anremiki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 01:48:22 by anremiki          #+#    #+#             */
-/*   Updated: 2021/12/17 21:02:32 by amontant         ###   ########.fr       */
+/*   Updated: 2021/12/18 16:22:10 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
 	clock_t t;
     t = clock();
 	str = get_next_line(fd);
-	while (i++ < 10) //Valeur modifiable pour le nombre de ligne exact que tu veux, sinon utilise direct les DEFINE pour la taille exact des fichiers 
+	while (i++ < _ODYSSEE) //Valeur modifiable pour le nombre de ligne exact que tu veux, sinon utilise direct les DEFINE pour la taille exact des fichiers 
 	{
 		printf("%s", str);
 		free(str);
