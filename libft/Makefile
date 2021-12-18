@@ -46,6 +46,7 @@ BONUS	=     ft_lstnew.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
 	      ft_lstmap.c \
+            
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
@@ -54,8 +55,8 @@ $(NAME) : $(OBJ)
 	ar crs $@ $^
 
 bonus:
-			$(CC) $(FLAGS) -c $(SRCS) $(BONUS)
-			ar rc $(NAME) $(OBJS) $(BONUS:.c=.o)
+			$(CC) $(CFLAGS) -c $(SRC) $(BONUS)
+			ar rc $(NAME) $(OBJ) $(BONUS:.c=.o)
 
 %.o : %.c
 	$(CC) -o $@ -c $^ $(CFLAGS) 

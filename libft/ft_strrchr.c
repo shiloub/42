@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:40:24 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/16 16:18:39 by amontant         ###   ########.fr       */
+/*   Created: 2021/11/22 12:40:54 by amontant          #+#    #+#             */
+/*   Updated: 2021/12/13 13:07:32 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	char	*p;
+	int		i;
+	int		cursor;
+	int		find;
 
+	while (c >= 256)
+		c -= 256;
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	p = (char *)s;
+	find = 0;
+	while (s[i])
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s[i] == c)
+		{
+			cursor = i;
+			find = 1;
+		}
 		i++;
 	}
+	if (find == 1)
+		return (&p[cursor]);
+	if (c == '\0')
+		return (&p[i]);
 	return (0);
 }

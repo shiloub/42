@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amontant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:40:24 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/16 16:18:39 by amontant         ###   ########.fr       */
+/*   Created: 2021/11/22 12:35:44 by amontant          #+#    #+#             */
+/*   Updated: 2021/11/22 12:35:48 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putnbr_fd(int nbr, int fd)
 {
-	size_t	i;
+	unsigned int	n;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	if (nbr < 0)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		ft_putchar_fd('-', fd);
+		n = -nbr;
 	}
-	return (0);
+	else
+		n = nbr;
+	if (n < 10)
+	{
+		ft_putchar_fd(n + '0', fd);
+	}
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd((n % 10) + '0', fd);
+	}
 }
