@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-int ft_strchr(char *str, char c)
+int ft_strchr (char *str, char c)
 {
-    int i;
-    i = 0;
+	int	i;
 
-    while(str[i])
-    {
-        if (str[i] == c)
-            return (1);
-        i++;
-    }
-    return 0;
-}int	ft_strlen(const char *str)
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -22,6 +24,28 @@ int ft_strchr(char *str, char c)
 		i ++;
 	}
 	return (i);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		s_len;
+	char	*s_;
+	char	*s2;
+	int		i;
+
+	i = 0;
+	s_ = (char *)s;
+	s_len = ft_strlen(s_);
+	s2 = malloc(sizeof(char) * s_len + 1);
+	if (!s2)
+		return (NULL);
+	while (s[i])
+	{
+		s2[i] = s[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -47,7 +71,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	strcat[i + lens1] = '\0';
-//	free(s1);
 	return (strcat);
 }
 

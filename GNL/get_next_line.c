@@ -22,12 +22,14 @@ char	*save_until_cr(char *str)
 	int	i;
 
 	i = 0;
+	//printf("** str avant modif = %s", str);
 	while (str[i + 1] && str[i] != '\n')
 	{
 		i++;
 	}
 	if (str[i] == '\n')
 		str[i + 1] = 0;
+	//printf("str  apres modif = %s\n", str);
 	return (str);
 }
 
@@ -57,22 +59,22 @@ char	*get_next_line(int fd)
 	char		*newline;
 	int			fin;
 
-	newline = malloc(1);
-	newline[0] = 0;
+	newline = ft_strdup("");
+	newline = ft_strjoin_f(newline, buff);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, "", 0) == -1)
 		return (NULL);
-	newline = ft_strjoin(buff, "");
-	if (read(fd, buff, BUFFER_SIZE) == 0 && buff[0] == 0)
-	{
-		free(newline);
-		return (NULL);
-	}
-	newline = ft_strjoin_f(newline, buff);
 	while (ft_strchr(buff, '\n') == 0)
 	{
 		fin = read(fd, buff, BUFFER_SIZE);
-		buff[fin + 1] = '\0';
+		buff[fin] = '\0';
 		newline = ft_strjoin_f(newline, buff);
+		if (!fin)
+			break ;
+	}
+	if (!fin && newline[0] == 0)
+	{
+		free(newline);
+		return (NULL);
 	}
 	newline = save_until_cr(newline);
 	save_after_cr(buff);

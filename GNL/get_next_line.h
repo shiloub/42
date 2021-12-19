@@ -15,9 +15,10 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-//#define BUFFER_SIZE 5000
+# define BUFFER_SIZE 15
 
 char	*ft_strjoin_f(char *s1, const char *s2);
+char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(char *str);
 int		ft_strchr(char *str, char c);
