@@ -3,14 +3,10 @@
 
 int main()
 {
-	ft_putstr("ceci est un test\n");
-	ft_putnbr(-42);
-	ft_putchar('\n');
-	ft_putnbr_hexa(15424);
-	int *p;
-
-	*p = 24;
-	printf("\n%p\n", p);
-	ft_putnbr_hexa((unsigned long)&p);
+	count_putstr("ceci est un test\n");
+	ft_putnbr_si(-42);
+	count_putchar('\n');
+	ft_putnbr_hexa_ui(15424);
+	printf("ceci est un test %jkdfigo");
 	return 0;
 }
