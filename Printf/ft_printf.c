@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+changer les headers!!
+
 int	treat(char c, va_list arg)
 {
 	if (c == 'd' || c == 'i')
