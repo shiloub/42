@@ -3,6 +3,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRC = ft_printf.c\
       display.c\
+	  display2.c\
+	  count.c\
       treat.c\
             
 OBJ = $(SRC:.c=.o)
