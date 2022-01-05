@@ -36,7 +36,7 @@ void		ft_strlstadd_back(t_strlist **alst, t_strlist *new);
 void		ft_strlstadd_front(t_strlist **alst, t_strlist *new);
 void		ft_free_strlst(t_strlist *lst);
 int			check_sort(t_intlist *a, t_intlist *b);
-void		sort_pushmin(t_intlist *a, t_strlist **commands);
+//void		sort_pushmin(t_intlist *a, t_strlist **commands);
 void		print_strlst(t_strlist *lst);
 void		take_op(t_intlist **a, t_intlist **b);
 t_intlist 	*parsing(int ac, char **av);

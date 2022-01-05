@@ -1,4 +1,23 @@
-#include "lst.h"
+#include "libft/libft.h"
+#include "gnl/get_next_line.h"
+#include "test.h"
+#include <stdio.h>
+
+// void	sort_pushmin(t_intlist *a, t_strlist **commands)
+// {
+// 	t_intlist	*b;
+// 	b = NULL;
+	
+// 	while (find_minpos(a) != 1)
+// 	{
+// 			rotate(&a);
+// 			ft_strlstadd_back(commands, ft_strlstnew("ra"));
+// 	}
+// 	push(&a, &b);
+// 	ft_strlstadd_back(commands, ft_strlstnew("pb"));
+// 	if (!check_sort(a, b))
+// 		printf("\n c'est pas trié\n");
+// }
 
 void	sort_pushmin(t_intlist *a, t_strlist **commands)
 {
@@ -6,7 +25,7 @@ void	sort_pushmin(t_intlist *a, t_strlist **commands)
 	b = NULL;
 	while (1)
 	{
-		if(find_minpos(a) < ft_intlstsize(a) / 2)
+		if(find_minpos(a) <= (ft_intlstsize(a) / 2))
 		{
 			while (find_minpos(a) != 1)
 			{
@@ -37,7 +56,6 @@ void	sort_pushmin(t_intlist *a, t_strlist **commands)
 		}
 	}
 }
-
 int	find_minpos(t_intlist *lst)
 {
 	int	min;
@@ -62,4 +80,20 @@ int	find_minpos(t_intlist *lst)
 		pos++;
 	}
 	return (pos);
+}
+
+int main(int ac, char **av)
+{
+	t_intlist *a;
+	t_intlist *b;
+	t_strlist *c;
+
+	b = NULL;
+	c = NULL;
+
+	a = parsing(ac, av);
+	printlsts(a, b);
+	sort_pushmin(a, &c);
+	print_strlst(c);
+	return 0;
 }

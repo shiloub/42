@@ -6,7 +6,7 @@
 /*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 15:58:59 by shiloub           #+#    #+#             */
-/*   Updated: 2022/01/03 01:24:05 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:43:15 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 t_intlist *parsing(int ac, char **av)
 {
 	t_intlist  *stack;
+	int temp;
 
-	stack = ft_intlstnew(ft_atoi(av[--ac]));
-	while (ac >= 2)
-		ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi(av[--ac])));
+	temp = ac;
+	stack = ft_intlstnew(ft_atoi(av[--temp]));
+	while (temp >= 2)
+		ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi(av[temp])));fs
 	return (stack);
 }
 int	check_sort(t_intlist *a, t_intlist *b)
@@ -84,6 +86,10 @@ void	take_op(t_intlist **a, t_intlist **b)
 		{
 			printf("\nle min est en %d position\n", find_minpos(*a));
 		}
+		else if (!ft_strncmp(str, "size\n", 100))
+		{
+			printf("\nla size le la liste a est %d\n", ft_intlstsize(*a));
+		}
 		else if (!ft_strncmp(str, "stop\n", 100))
 			break;
 		else
@@ -100,17 +106,4 @@ void	take_op(t_intlist **a, t_intlist **b)
 			break;
 		}	
 	}
-}
-int main(int ac, char **av)
-{
-	t_intlist *a;
-	t_intlist *b;
-	a = parsing(ac, av);
-	b = NULL;
-	printlsts(a, b);
-	take_op(&a, &b);
-	ft_freelst(a);
-	ft_freelst(b);
-	return 0;
-	
 }
