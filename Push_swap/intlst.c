@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intlst.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/14 18:18:05 by amontant          #+#    #+#             */
+/*   Updated: 2022/01/14 18:18:06 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lst.h"
 
 t_intlist	*ft_intlstdup(t_intlist *lst)
 {
-	t_intlist *dup;
-	t_intlist *temp;
+	t_intlist	*dup;
+	t_intlist	*temp;
 
-	if(!lst)
+	if (!lst)
 		return (NULL);
 	temp = lst;
 	dup = ft_intlstnew(temp->content);
@@ -17,6 +29,7 @@ t_intlist	*ft_intlstdup(t_intlist *lst)
 	}
 	return (dup);
 }
+
 t_intlist	*ft_intlstnew(int content)
 {
 	t_intlist	*new;
@@ -28,10 +41,11 @@ t_intlist	*ft_intlstnew(int content)
 	new->next = NULL;
 	return (new);
 }
+
 int	ft_intlstsize(t_intlist *lst)
 {
 	t_intlist	*current;
-	int		i;
+	int			i;
 
 	current = lst;
 	i = 0;
@@ -42,6 +56,7 @@ int	ft_intlstsize(t_intlist *lst)
 	}
 	return (i);
 }
+
 void	ft_intlstadd_back(t_intlist **alst, t_intlist *new)
 {
 	t_intlist	*current;
@@ -60,11 +75,13 @@ void	ft_intlstadd_back(t_intlist **alst, t_intlist *new)
 	}
 	current->next = new;
 }
+
 void	ft_intlstadd_front(t_intlist **alst, t_intlist *new)
 {
 	new->next = *alst;
 	*alst = new;
 }
+
 void	ft_freelst(t_intlist *lst)
 {
 	t_intlist	*temp;
@@ -79,10 +96,11 @@ void	ft_freelst(t_intlist *lst)
 	}
 	lst = NULL;
 }
+
 void	printlsts(t_intlist *a, t_intlist *b)
 {
-	t_intlist *current_a;
-	t_intlist *current_b;
+	t_intlist	*current_a;
+	t_intlist	*current_b;
 
 	current_a = a;
 	current_b = b;
@@ -106,5 +124,3 @@ void	printlsts(t_intlist *a, t_intlist *b)
 		current_b = current_b->next;
 	}
 }
-
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strlst.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/14 18:20:46 by amontant          #+#    #+#             */
+/*   Updated: 2022/01/14 18:20:50 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lst.h"
 
 t_strlist	*ft_strlstnew(char *string)
@@ -11,10 +23,11 @@ t_strlist	*ft_strlstnew(char *string)
 	new->next = NULL;
 	return (new);
 }
+
 int	ft_strlstsize(t_strlist *lst)
 {
 	t_strlist	*current;
-	int		i;
+	int			i;
 
 	current = lst;
 	i = 0;
@@ -25,6 +38,7 @@ int	ft_strlstsize(t_strlist *lst)
 	}
 	return (i);
 }
+
 void	ft_strlstadd_back(t_strlist **alst, t_strlist *new)
 {
 	t_strlist	*current;
@@ -43,11 +57,13 @@ void	ft_strlstadd_back(t_strlist **alst, t_strlist *new)
 	}
 	current->next = new;
 }
+
 void	ft_strlstadd_front(t_strlist **alst, t_strlist *new)
 {
 	new->next = *alst;
 	*alst = new;
 }
+
 void	ft_free_strlst(t_strlist *lst)
 {
 	t_strlist	*temp;
@@ -78,5 +94,4 @@ void	print_strlst(t_strlist *lst)
 		printf("%s ", current->string);
 		current = current->next;
 	}
-	
 }
