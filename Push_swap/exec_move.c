@@ -1,47 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_move.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 16:14:34 by amontant          #+#    #+#             */
+/*   Updated: 2022/01/18 18:32:35 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	exec_move(t_move *move, t_intlist **a, t_intlist **b)
+void	exec_move(t_move *move, t_intlist **from, t_intlist **to, int indice)
 {
 	while (move->common_move)
 	{
-		if (move->reverse_a)
-			rrr(move, a, b);
+		if (move->reverse_from)
+			rrr(move, from, to);
 		else
-			rr(move, a, b);
+			rr(move, from, to);
 	}
-	while (move->move_a || move->move_b)
-		ra_rb(move, a, b);
-	push(a, b);
-	write(1, "pb\n", 3);
+	while (move->move_from || move->move_to)
+		ra_rb(move, from, to, indice);
+	if (indice == 1)
+		write(1, "pb\n", 3);
+	else
+		write(1, "pa\n", 3);
+	push(from, to);
 }
-void	rrr(t_move *move, t_intlist **a, t_intlist **b)
+
+void	rrr(t_move *move, t_intlist **from, t_intlist **to)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
+	reverse_rotate(from);
+	reverse_rotate(to);
 	move->common_move--;
 	write(1, "rrr\n", 4);
 }
 
-void	rr(t_move *move, t_intlist **a, t_intlist **b)
+void	rr(t_move *move, t_intlist **from, t_intlist **to)
 {
-	rotate(a);
-	rotate(b);
+	rotate(from);
+	rotate(to);
 	move->common_move--;
 	write(1, "rr\n", 3);
 }
 
-void	ra_rb(t_move *move, t_intlist **a, t_intlist **b)
+void	ra_rb(t_move *move, t_intlist **from, t_intlist **to, int indice)
 {
-	if(move->move_a)
+	if (move->move_from)
 	{
-		rotate(a);
-		move->move_a--;
-		write(1, "ra\n", 3);
+		rotate(from);
+		move->move_from--;
+		if (indice == 1)
+			write(1, "ra\n", 3);
+		else
+			write(1, "rb\n", 3);
 	}
-	if(move->move_b)
+	if (move->move_to)
 	{
-		rotate(b);
-		move->move_b--;
-		write(1, "rb\n", 3);
+		rotate(to);
+		move->move_to--;
+		if (indice == 1)
+			write(1, "rb\n", 3);
+		else
+			write(1, "ra\n", 3);
 	}
 }

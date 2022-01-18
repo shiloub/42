@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:16:36 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/17 22:50:30 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/18 19:26:19 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LST_H
-# define LST_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 # include <stdlib.h>
 # include <stdio.h>
 # include "gnl/get_next_line.h"
@@ -24,10 +24,10 @@ typedef struct s_intlist
 }			t_intlist;
 typedef struct s_move
 {
-	int	move_a;
-	int	move_b;
-	int	reverse_a;
-	int	reverse_b;
+	int	move_from;
+	int	move_to;
+	int	reverse_from;
+	int	reverse_to;
 	int	common_move;
 	int	total;
 }		t_move;
@@ -41,9 +41,11 @@ typedef struct s_strlist
 //*******************position.c*************************
 int			find_minpos(t_intlist *lst);
 int			find_maxpos(t_intlist *lst);
+int			find_just_next(t_intlist *b, int value, int indice);
 void		sort_pushmin(t_intlist *a, t_strlist **commands);
-int 		find_bigger_lowest(t_intlist *b, int value);
-int			value_is_lowest(t_intlist *b, int value);
+int			find_bigger_lowest(t_intlist *b, int value);
+int			find_lower_biggest(t_intlist *b, int value);
+int			value_is_extreme(t_intlist *b, int value, int indice);
 
 //********************parsing.c**************************
 t_intlist	*parsing(int ac, char **av);
@@ -76,16 +78,23 @@ void		rotate(t_intlist **lst);
 void		reverse_rotate(t_intlist **lst);
 
 //**********************set_move.c****************************
-void		set_move(t_move *elem, t_intlist *a, t_intlist *b, int index);
-void		set_move_a(t_move *elem, t_intlist *a, int index);
-void		set_move_b(t_move *elem, t_intlist *b, int value);
+t_move		*set_move(t_intlist *from, t_intlist *to, int index, int indice);
+void		set_move_from(t_move *elem, t_intlist *from, int index);
+void		set_move_to(t_move *elem, t_intlist *to, int value, int indice);
 void		set_total_move(t_move *elem);
 int			index_value(t_intlist *lst, int index);
 
 //********************exec_move.c**************************
-void		exec_move(t_move *move, t_intlist **a, t_intlist **b);
+void		exec_move(t_move *move, t_intlist **from, t_intlist **to, int indice);
 void		rrr(t_move *move, t_intlist **a, t_intlist **b);
 void		rr(t_move *move, t_intlist **a, t_intlist **b);
-void		ra_rb(t_move *move, t_intlist **a, t_intlist **b);
+void		ra_rb(t_move *move, t_intlist **a, t_intlist **b, int indice);
+
+//*********************main.c*******************************
+void		sort(t_intlist **a, t_intlist **b);
+void		set_best_move(t_move *best_move, t_move *move);
+void		print_move(t_move *move);
+void		push_in_b(t_intlist **a, t_intlist **b);
+void		push_in_a(t_intlist **a, t_intlist **b);
 
 #endif
