@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   intlst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:18:05 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/14 18:18:06 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:24:04 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lst.h"
+#include "push_swap.h"
 
 t_intlist	*ft_intlstdup(t_intlist *lst)
 {

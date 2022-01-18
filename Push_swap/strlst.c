@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   strlst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:20:46 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/14 18:20:50 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:00:14 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lst.h"
+#include "push_swap.h"
 
 t_strlist	*ft_strlstnew(char *string)
 {

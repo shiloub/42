@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:18:22 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/14 18:20:10 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/17 21:40:50 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lst.h"
+#include "push_swap.h"
 
 void	swap(t_intlist *lst)
 {
