@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:16:36 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/18 22:29:37 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/19 19:06:52 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,16 @@ void		set_move_from(t_move *elem, t_intlist *from, int index);
 void		set_move_to(t_move *elem, t_intlist *to, int value, int indice);
 void		set_total_move(t_move *elem);
 int			index_value(t_intlist *lst, int index);
+void		free_3(t_move *a, t_move *b, t_move *c);
 
-//********************exec_move.c**************************
+//*************set_move_rotate_reverse.c**********************
+void		set_move_from_rotate(t_move *elem, t_intlist *from, int index);
+void		set_move_to_rotate(t_move *elem, t_intlist *to, int value, int indice);
+void		set_move_from_reverse(t_move *elem, t_intlist *from, int index);
+void		set_move_to_reverse(t_move *elem, t_intlist *to, int value, int indice);
+
+
+//********************exec_move.c*****************************
 void		exec_move(t_move *move, t_intlist **from, t_intlist **to, int indice);
 void		rrr(t_move *move, t_intlist **a, t_intlist **b);
 void		rr(t_move *move, t_intlist **a, t_intlist **b);

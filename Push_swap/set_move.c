@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:23:41 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/18 19:24:43 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/19 19:31:58 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,37 @@
 t_move	*set_move(t_intlist *from, t_intlist *to, int index, int indice)
 {
 	t_move	*elem;
+	t_move	*elem_rr;
+	t_move	*elem_rrr;
+	t_move	*best_move;
 
 	elem = malloc(sizeof(t_move));
+	elem_rr = malloc(sizeof(t_move));
+	elem_rrr = malloc(sizeof(t_move));
+	best_move = malloc(sizeof(t_move));
 	set_move_from(elem, from, index);
 	set_move_to(elem, to, index_value(from, index), indice);
 	set_total_move(elem);
-	return (elem);
+	set_move_from_reverse(elem_rrr, from, index);
+	set_move_to_reverse(elem_rrr, to, index_value(from, index), indice);
+	set_total_move(elem_rrr);
+	set_move_from_rotate(elem_rr, from, index);
+	set_move_to_rotate(elem_rr, to, index_value(from, index), indice);
+	set_total_move(elem_rr);
+	set_best_move(best_move, elem);
+	if (elem_rr->total < best_move->total)
+		set_best_move(best_move, elem_rr);
+	if (elem_rrr->total < best_move->total)
+		set_best_move(best_move, elem_rr);
+	//free_3(elem, elem_rr, elem_rrr);
+	return (best_move);
+}
+
+void	free_3(t_move *a, t_move *b, t_move *c)
+{
+	free(a);
+	free(b);
+	free(c);
 }
 
 int	index_value(t_intlist *lst, int index)

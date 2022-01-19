@@ -8,6 +8,7 @@ int main(int ac, char **av)
 	b = NULL;
 	sort(&a, &b);
 	//printlsts(a, b);
+	//take_op(&a, &b);
 	ft_freelst(a);
 	ft_freelst(b);
 	return (0);
@@ -42,9 +43,9 @@ void	push_in_b(t_intlist **a, t_intlist **b)
 	t_intlist	*current;
 	int			i;
 
-	current = *a;
 	while (ft_intlstsize(*a) > 2)
 	{
+		current = *a;
 		best_move = set_move(*a, *b, 0, 1);
 		i = 0;
 		while (current)
@@ -62,7 +63,7 @@ void	push_in_b(t_intlist **a, t_intlist **b)
 			free(move);
 		}
 		else
-		free(move);
+			free(move);
 		
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 15:58:59 by shiloub           #+#    #+#             */
-/*   Updated: 2022/01/15 16:28:02 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/19 19:28:52 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	check_nodoublons(int *tab, int size)
 void	take_op(t_intlist **a, t_intlist **b)
 {
 	char	*str;
+	t_move *move;
 	int	count = 0;
 	while (1)
 	{
@@ -135,13 +136,14 @@ void	take_op(t_intlist **a, t_intlist **b)
 			reverse_rotate(a);
 			reverse_rotate(b);
 		}
-		else if (!ft_strncmp(str, "minpos\n", 100))
+		else if (!ft_strncmp(str, "move\n", 100))
 		{
-			printf("\nle min est en %d position\n", find_minpos(*a));
+			move = set_move(*a, *b, 3, 1);
+			print_move(move);
 		}
-		else if (!ft_strncmp(str, "size\n", 100))
+		else if (!ft_strncmp(str, "exec\n", 100))
 		{
-			printf("\nla size le la liste a est %d\n", ft_intlstsize(*a));
+			exec_move(move, a, b, 1);
 		}
 		else if (!ft_strncmp(str, "stop\n", 100))
 			break;
