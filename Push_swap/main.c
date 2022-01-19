@@ -6,12 +6,8 @@ int main(int ac, char **av)
 	t_intlist *b;
 	a = parsing(ac, av);
 	b = NULL;
-	//printf("\n_________________________\n");
-	push(&a, &b);
-	push(&a, &b);
-	printlsts(a, b);
 	sort(&a, &b);
-	printlsts(a, b);
+	//printlsts(a, b);
 	ft_freelst(a);
 	ft_freelst(b);
 	return (0);
@@ -19,12 +15,24 @@ int main(int ac, char **av)
 
 void	sort(t_intlist **a, t_intlist **b)
 {
+	push(a, b);
+	push(a, b);
+	write(1, "pb\npb\n", 6);
 	push_in_b(a, b);
-	//push_in_a(a, b);
-	// while (!check_sort(a, b))
-	// {
-	// 	if ()
-	// }
+	push_in_a(a, b);
+	while (find_minpos(*a) != 0)
+	{
+		if (find_minpos(*a) + 1 > ft_intlstsize(*a) / 2)
+		{
+			reverse_rotate(a);
+			write(1, "rra\n", 4);
+		}
+		else
+		{
+			rotate(a);
+			write(1, "ra\n", 3);
+		}
+	}
 }
 
 void	push_in_b(t_intlist **a, t_intlist **b)
@@ -48,8 +56,14 @@ void	push_in_b(t_intlist **a, t_intlist **b)
 			i++;
 		}
 		exec_move(best_move, a, b, 1);
-		//free(best_move);
-		//free(move);
+		if(move != best_move)
+		{
+			free(best_move);
+			free(move);
+		}
+		else
+		free(move);
+		
 	}
 }
 
@@ -76,8 +90,8 @@ void	push_in_a(t_intlist **a, t_intlist **b)
 			i++;
 		}
 		exec_move(best_move, b, a, 2);
-		free(move);
-		free(best_move);
+		//free(move);
+		//free(best_move);
 	}
 }
 

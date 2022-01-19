@@ -47,7 +47,7 @@ int	find_minpos(t_intlist *lst)
 	if (!lst)
 		return (0);
 	current = lst;
-	pos = 1;
+	pos = 0;
 	min = lst->content;
 	while(current != NULL)
 	{

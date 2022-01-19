@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:16:36 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/18 19:26:19 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/18 22:29:37 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int			index_value(t_intlist *lst, int index);
 void		exec_move(t_move *move, t_intlist **from, t_intlist **to, int indice);
 void		rrr(t_move *move, t_intlist **a, t_intlist **b);
 void		rr(t_move *move, t_intlist **a, t_intlist **b);
-void		ra_rb(t_move *move, t_intlist **a, t_intlist **b, int indice);
+void		exec_r_rr_from(t_move *move, t_intlist **from, int indice);
+void		exec_r_rr_to(t_move *move, t_intlist **to, int indice);
 
 //*********************main.c*******************************
 void		sort(t_intlist **a, t_intlist **b);
