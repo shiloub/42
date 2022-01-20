@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:23:41 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/19 19:31:58 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:18:48 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ t_move	*set_move(t_intlist *from, t_intlist *to, int index, int indice)
 
 void	free_3(t_move *a, t_move *b, t_move *c)
 {
-	free(a);
-	free(b);
-	free(c);
+	if (a != b && b != c && c != a)
+	{
+		free(a);
+		free(b);
+		free(c);
+	}
 }
 
 int	index_value(t_intlist *lst, int index)

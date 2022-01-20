@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:16:36 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/19 19:06:52 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:59:57 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,12 @@ void		set_best_move(t_move *best_move, t_move *move);
 void		print_move(t_move *move);
 void		push_in_b(t_intlist **a, t_intlist **b);
 void		push_in_a(t_intlist **a, t_intlist **b);
+
+//***********************free.c****************************
+void		free_moves(t_move *a, t_move *b);
+void		ft_freelst(t_intlist *lst);
+
+//*********************to_not_push.c***********************
+void	printlsts(t_intlist *a, t_intlist *b);
 
 #endif

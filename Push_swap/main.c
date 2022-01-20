@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/20 17:19:05 by amontant          #+#    #+#             */
+/*   Updated: 2022/01/20 18:15:00 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_intlist	*a;
-	t_intlist *b;
+	t_intlist	*b;
+
 	a = parsing(ac, av);
 	b = NULL;
 	sort(&a, &b);
-	//printlsts(a, b);
-	//take_op(&a, &b);
+	printlsts(a, b);
 	ft_freelst(a);
 	ft_freelst(b);
 	return (0);
@@ -50,21 +62,13 @@ void	push_in_b(t_intlist **a, t_intlist **b)
 		i = 0;
 		while (current)
 		{
-			move = set_move(*a, *b, i, 1);
+			move = set_move(*a, *b, i++, 1);
 			if (best_move->total > move->total)
 				set_best_move(best_move, move);
 			current = current->next;
-			i++;
 		}
 		exec_move(best_move, a, b, 1);
-		if(move != best_move)
-		{
-			free(best_move);
-			free(move);
-		}
-		else
-			free(move);
-		
+		free_moves(move, best_move);
 	}
 }
 
@@ -75,8 +79,6 @@ void	push_in_a(t_intlist **a, t_intlist **b)
 	t_intlist	*current;
 	int			i;
 
-	move = malloc(sizeof(t_move));
-	best_move = malloc(sizeof(t_move));
 	current = *b;
 	while (ft_intlstsize(*b) > 0)
 	{
@@ -91,8 +93,7 @@ void	push_in_a(t_intlist **a, t_intlist **b)
 			i++;
 		}
 		exec_move(best_move, b, a, 2);
-		//free(move);
-		//free(best_move);
+		free_moves(move, best_move);
 	}
 }
 
@@ -104,14 +105,4 @@ void	set_best_move(t_move *best_move, t_move *move)
 	best_move->reverse_to = move->reverse_to;
 	best_move->common_move = move->common_move;
 	best_move->total = move->total;
-}
-
-void	print_move(t_move *move)
-{
-	printf("move_from = %d\n", move->move_from);
-	printf("move_to = %d\n", move->move_to);
-	printf("reverse_from = %d\n", move->reverse_from);
-	printf("reverse_to = %d\n", move->reverse_to);
-	printf("common_move = %d\n", move->common_move);
-	printf("total = %d\n", move->total);
 }

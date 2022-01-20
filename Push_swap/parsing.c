@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 15:58:59 by shiloub           #+#    #+#             */
-/*   Updated: 2022/01/19 19:28:52 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:04:01 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-t_intlist	*parsing(int ac, char **tab)
+t_intlist	*parsing(int ac, char **av)
 {
 	t_intlist	*stack;
 	int			temp;
 
 	temp = ac;
-	stack = ft_intlstnew(ft_atoi(tab[--temp]));
+	if (!check_args(ac, av))
+	{
+		write(1, "WRONG ARGUMENTS\n", 16);
+		return (NULL);
+	}
+	stack = ft_intlstnew(ft_atoi(av[--temp]));
 	while (temp >= 2)
-		ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi(tab[--temp])));
+		ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi(av[--temp])));
 	return (stack);
 }
 
@@ -51,21 +56,22 @@ int	check_args(int ac, char **av)
 	int	i;
 	int	size;
 
+	if (ac <= 2)
+		return (0);
 	tab = malloc(sizeof(int) * (ac - 1));
 	size = ac - 1;
 	if (!tab)
 		return (0);
 	while (ac >= 2)
 	{
-		i = 0;
-		while (av[ac - 1][i])
+		i = -1;
+		while (av[ac - 1][i++])
 		{
 			if (!ft_isdigit(av[ac - 1][i]))
 			{
 				free(tab);
 				return (0);
 			}
-			i++;
 		}
 		tab[ac - 2] = ft_atoi(av[ac - 1]);
 		ac--;
@@ -95,70 +101,4 @@ int	check_nodoublons(int *tab, int size)
 	}
 	free(tab);
 	return (1);
-}
-
-void	take_op(t_intlist **a, t_intlist **b)
-{
-	char	*str;
-	t_move *move;
-	int	count = 0;
-	while (1)
-	{
-		str = get_next_line(1);
-		if (!ft_strncmp(str, "sa\n", 100))
-			swap(*a);
-		else if (!ft_strncmp(str, "sb\n", 100))
-			swap(*b);
-		else if (!ft_strncmp(str, "ss\n", 100))
-		{
-			swap(*a);
-			swap(*b);	
-		}
-		else if (!ft_strncmp(str, "pa\n", 100))
-			push(b, a);
-		else if (!ft_strncmp(str, "pb\n", 100))
-			push(a, b);
-		else if (!ft_strncmp(str, "ra\n", 100))
-			rotate(a);
-		else if (!ft_strncmp(str, "rb\n", 100))
-			rotate(b);
-		else if (!ft_strncmp(str, "rr\n", 100))
-		{
-			rotate(a);
-			rotate(b);
-		}
-		else if (!ft_strncmp(str, "rra\n", 100))
-			reverse_rotate(a);
-		else if (!ft_strncmp(str, "rrb\n", 100))
-			reverse_rotate(b);
-		else if (!ft_strncmp(str, "rrr\n", 100))
-		{
-			reverse_rotate(a);
-			reverse_rotate(b);
-		}
-		else if (!ft_strncmp(str, "move\n", 100))
-		{
-			move = set_move(*a, *b, 3, 1);
-			print_move(move);
-		}
-		else if (!ft_strncmp(str, "exec\n", 100))
-		{
-			exec_move(move, a, b, 1);
-		}
-		else if (!ft_strncmp(str, "stop\n", 100))
-			break;
-		else
-		{
-			printf("\nwrong command\n");
-			count--;	
-		}
-		count++;
-		printlsts(*a, *b);
-		free(str);
-		if (check_sort(*a, *b))
-		{
-			printf("\n\n\n***********You won, your score is %d***********\n\n\n", count);
-			break;
-		}	
-	}
 }

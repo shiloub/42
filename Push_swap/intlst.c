@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intlst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:18:05 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/15 16:24:04 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/20 17:52:43 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,47 +80,4 @@ void	ft_intlstadd_front(t_intlist **alst, t_intlist *new)
 {
 	new->next = *alst;
 	*alst = new;
-}
-
-void	ft_freelst(t_intlist *lst)
-{
-	t_intlist	*temp;
-	t_intlist	*current;
-
-	current = lst;
-	while (current)
-	{
-		temp = current;
-		current = current->next;
-		free(temp);
-	}
-	lst = NULL;
-}
-
-void	printlsts(t_intlist *a, t_intlist *b)
-{
-	t_intlist	*current_a;
-	t_intlist	*current_b;
-
-	current_a = a;
-	current_b = b;
-	printf("*********\n");
-	printf("|a     b|\n");
-	printf("*********\n");
-	while(current_a && current_b)
-	{
-		printf(" %d     %d\n", current_a->content, current_b->content);
-		current_a = current_a->next;
-		current_b = current_b->next;
-	}
-	while(current_a)
-	{
-		printf(" %d\n", current_a->content);
-		current_a = current_a->next;
-	}
-	while(current_b)
-	{
-		printf("       %d\n", current_b->content);
-		current_b = current_b->next;
-	}
 }
