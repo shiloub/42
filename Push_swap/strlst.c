@@ -6,7 +6,7 @@
 /*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:20:46 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/15 16:00:14 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:22:16 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_free_strlst(t_strlist *lst)
 	{
 		temp = current;
 		current = current->next;
+		free(temp->string);
 		free(temp);
 	}
 	lst = NULL;

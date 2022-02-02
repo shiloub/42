@@ -6,7 +6,7 @@
 /*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:34:47 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/02 16:40:58 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/26 21:18:46 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, "", 0) == -1)
 		return (NULL);
+	fin = 1;
 	newline = ft_strdup_gnl("");
 	newline = ft_strjoin_f(newline, buff);
 	while (ft_strchr_gnl(buff, '\n') == 0)

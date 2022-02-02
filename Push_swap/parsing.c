@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 15:58:59 by shiloub           #+#    #+#             */
-/*   Updated: 2022/01/20 18:04:01 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/27 16:47:44 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
 
 t_intlist	*parsing(int ac, char **av)
 {
@@ -20,85 +18,64 @@ t_intlist	*parsing(int ac, char **av)
 	int			temp;
 
 	temp = ac;
-	if (!check_args(ac, av))
+	if (ac == 2)
+		stack = parsing_long_string(av[1]);
+	else
 	{
-		write(1, "WRONG ARGUMENTS\n", 16);
-		return (NULL);
+		if (!check_args(ac, av))
+		{
+			return (NULL);
+		}
+		stack = ft_intlstnew(ft_atoi(av[--temp]));
+		while (temp >= 2)
+			ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi_exit(av[--temp], NULL, NULL, stack)));
 	}
-	stack = ft_intlstnew(ft_atoi(av[--temp]));
-	while (temp >= 2)
-		ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi(av[--temp])));
 	return (stack);
 }
 
-int	check_sort(t_intlist *a, t_intlist *b)
+t_intlist *parsing_long_string(char *str)
 {
-	t_intlist	*current;
-	int			max;
-
-	if (ft_intlstsize(b))
-		return (0);
-	current = a;
-	max = current->content;
-	while (current)
-	{
-		if (max > current->content)
-			return (0);
-		max = current->content;
-		current = current->next;
-	}
-	return (1);
-}
-
-int	check_args(int ac, char **av)
-{
-	int	*tab;
-	int	i;
-	int	size;
-
-	if (ac <= 2)
-		return (0);
-	tab = malloc(sizeof(int) * (ac - 1));
-	size = ac - 1;
-	if (!tab)
-		return (0);
-	while (ac >= 2)
-	{
-		i = -1;
-		while (av[ac - 1][i++])
-		{
-			if (!ft_isdigit(av[ac - 1][i]))
-			{
-				free(tab);
-				return (0);
-			}
-		}
-		tab[ac - 2] = ft_atoi(av[ac - 1]);
-		ac--;
-	}
-	return (check_nodoublons(tab, size));
-}
-
-int	check_nodoublons(int *tab, int size)
-{
-	int	i;
-	int	j;
+	int			i;
+	t_intlist	*stack;
+	int			*int_tab;
+	char		**tab;
 
 	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (tab[i] == tab[j])
-			{
-				free(tab);
-				return (0);
-			}
-			j++;
-		}
+	if (!check_only_digit(str))
+		return (NULL);
+	tab = ft_split(str, ' ');
+	if (tab == NULL)
+		return (NULL);
+	int_tab = set_int_tab(tab);
+	while (tab[i] != NULL)
 		i++;
+	if (!check_nodoublons(int_tab, i))
+	{
+		free_split(tab);
+		return (NULL);
 	}
-	free(tab);
-	return (1);
+	stack = NULL;
+	while (i > 0)
+		ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi(tab[--i])));
+	free_split(tab);
+	return (stack);
+}
+
+
+int	*set_int_tab(char **tab)
+{
+	int	*int_tab;
+	int	size;
+	
+	size = 0;
+	while (tab[size] != NULL)
+		size ++;
+	int_tab = malloc(sizeof(int) * size);
+	size = 0;
+	while (tab[size] != NULL)
+	{
+		int_tab[size] = ft_atoi_exit(tab[size], tab, int_tab, NULL);
+		size ++;
+	}
+	return (int_tab);
 }

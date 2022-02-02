@@ -6,7 +6,7 @@
 /*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:06:50 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/02 16:41:34 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:10:11 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# define BUFFER_SIZE 15
+# define BUFFER_SIZE 1
 
 char	*ft_strjoin_f(char *s1, const char *s2);
 char	*ft_strdup_gnl(const char *s);

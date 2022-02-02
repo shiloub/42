@@ -1,42 +1,6 @@
 #include "push_swap.h"
 
-void	sort_pushmin(t_intlist *a, t_strlist **commands)
-{
-	t_intlist	*b;
-	b = NULL;
-	while (1)
-	{
-		if(find_minpos(a) < ft_intlstsize(a) / 2)
-		{
-			while (find_minpos(a) != 1)
-			{
-				rotate(&a);
-				ft_strlstadd_back(commands, ft_strlstnew("ra"));
-			}
-			push(&a, &b);
-			ft_strlstadd_back(commands, ft_strlstnew("pb"));
-		}
-		else
-		{
-			while (find_minpos(a) != 1)
-			{
-				reverse_rotate(&a);
-				ft_strlstadd_back(commands, ft_strlstnew("rra"));
-			}
-			push(&a, &b);
-			ft_strlstadd_back(commands, ft_strlstnew("pb"));
-		}
-		if (!ft_intlstsize(a))
-		{
-			while (ft_intlstsize(b))
-			{
-				push(&b, &a);
-				ft_strlstadd_back(commands, ft_strlstnew("pa"));
-			}
-			return ;
-		}
-	}
-}
+#include "push_swap.h"
 
 int	find_minpos(t_intlist *lst)
 {

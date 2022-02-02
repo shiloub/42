@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:50:47 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/20 18:02:09 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/24 18:08:14 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,38 @@ void	free_moves(t_move *move, t_move *best_move)
 	}
 	else
 		free(move);
+}
+
+void	free_2(t_move *a, t_move *b, t_move *c, t_move *best_move)
+{
+	if (a == best_move)
+	{
+		free(b);
+		free(c);
+	}
+	if (b == best_move)
+	{
+		free(a);
+		free(c);
+	}
+	if (c == best_move)
+	{
+		free(b);
+		free(a);
+	}
+}
+
+void	free_split(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 void	ft_freelst(t_intlist *lst)
