@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/02 17:10:56 by amontant          #+#    #+#             */
+/*   Updated: 2022/02/02 18:30:52 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "gnl/get_next_line.h"
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_intlist	*a;
 	t_intlist	*b;
@@ -10,6 +22,8 @@ int main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	a = parsing(ac, av);
+	if (!a)
+		return (ft_return());
 	b = NULL;
 	instruc = NULL;
 	get_instructions(&instruc);
@@ -25,12 +39,22 @@ int main(int ac, char **av)
 	return (0);
 }
 
+int	ft_return(void)
+{
+	write(1, "Error\n", 6);
+	return (0);
+}
+
 void	get_instructions(t_strlist **lst)
 {
-	char *str;
+	char	*str;
 
-	while((str = get_next_line(0)))
+	str = get_next_line(0);
+	while (str)
+	{
 		ft_strlstadd_back(lst, ft_strlstnew(str));
+		str = get_next_line(0);
+	}
 }
 
 int	do_op(t_intlist **a, t_intlist **b, t_strlist *op)

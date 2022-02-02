@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:14:34 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/18 22:30:39 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:12:40 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	exec_r_rr_from(t_move *move, t_intlist **from, int indice)
 			else
 				write(1, "rb\n", 3);
 		}
-		else 
+		else
 		{
 			reverse_rotate(from);
 			if (indice == 1)
@@ -72,6 +72,7 @@ void	exec_r_rr_from(t_move *move, t_intlist **from, int indice)
 		move->move_from--;
 	}
 }
+
 void	exec_r_rr_to(t_move *move, t_intlist **to, int indice)
 {
 	if (move->move_to)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strlst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:20:46 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/26 23:22:16 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:33:21 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,4 @@ void	ft_free_strlst(t_strlist *lst)
 		free(temp);
 	}
 	lst = NULL;
-}
-
-void	print_strlst(t_strlist *lst)
-{
-	t_strlist	*current;
-
-	current = lst;
-	if (!current)
-	{
-		printf("chaine de string vide");
-		return ;
-	}
-	while (current)
-	{
-		printf("%s ", current->string);
-		current = current->next;
-	}
 }

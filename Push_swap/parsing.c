@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 15:58:59 by shiloub           #+#    #+#             */
-/*   Updated: 2022/01/27 16:47:44 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 18:25:12 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_intlist	*parsing(int ac, char **av)
 {
 	t_intlist	*stack;
+	t_intlist	*new;
 	int			temp;
 
 	temp = ac;
@@ -23,17 +24,18 @@ t_intlist	*parsing(int ac, char **av)
 	else
 	{
 		if (!check_args(ac, av))
-		{
 			return (NULL);
-		}
-		stack = ft_intlstnew(ft_atoi(av[--temp]));
+		stack = ft_intlstnew(atoi_ex(av[--temp], NULL, NULL, stack));
 		while (temp >= 2)
-			ft_intlstadd_front(&stack, ft_intlstnew(ft_atoi_exit(av[--temp], NULL, NULL, stack)));
+		{
+			new = ft_intlstnew(atoi_ex(av[--temp], NULL, NULL, stack));
+			ft_intlstadd_front(&stack, new);
+		}
 	}
 	return (stack);
 }
 
-t_intlist *parsing_long_string(char *str)
+t_intlist	*parsing_long_string(char *str)
 {
 	int			i;
 	t_intlist	*stack;
@@ -61,12 +63,11 @@ t_intlist *parsing_long_string(char *str)
 	return (stack);
 }
 
-
 int	*set_int_tab(char **tab)
 {
 	int	*int_tab;
 	int	size;
-	
+
 	size = 0;
 	while (tab[size] != NULL)
 		size ++;
@@ -74,7 +75,7 @@ int	*set_int_tab(char **tab)
 	size = 0;
 	while (tab[size] != NULL)
 	{
-		int_tab[size] = ft_atoi_exit(tab[size], tab, int_tab, NULL);
+		int_tab[size] = atoi_ex(tab[size], tab, int_tab, NULL);
 		size ++;
 	}
 	return (int_tab);

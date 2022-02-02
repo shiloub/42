@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:19:05 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/25 15:48:17 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:18:02 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,14 @@ int	main(int ac, char **av)
 			write(1, "Error\n", 6);
 		return (0);
 	}
-	
 	if (ft_intlstsize(a) > 5)
 		sort(&a, &b);
-	else if(ft_intlstsize(a) <= 5 && ft_intlstsize(a) >= 2)
+	else if (ft_intlstsize(a) <= 5 && ft_intlstsize(a) >= 2)
 		sort_minor(&a, &b);
 	ft_freelst(a);
 	ft_freelst(b);
 	return (0);
 }
-
 
 void	sort(t_intlist **a, t_intlist **b)
 {
@@ -64,7 +62,7 @@ void	push_in_b(t_intlist **a, t_intlist **b)
 	t_move		*best_move;
 	t_intlist	*current;
 	int			i;
-	
+
 	best_move = malloc(sizeof(t_move));
 	while (ft_intlstsize(*a) > 2)
 	{
@@ -79,7 +77,7 @@ void	push_in_b(t_intlist **a, t_intlist **b)
 			free(move);
 			current = current->next;
 			if (best_move->total < 4 && ft_intlstsize(*a) > 50)
-				break;
+				break ;
 		}
 		exec_move(best_move, a, b, 1);
 	}

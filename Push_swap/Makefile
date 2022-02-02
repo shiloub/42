@@ -15,6 +15,7 @@ SRC_PS = exec_move.c \
 	sort_minor.c \
 	ft_atoi_exit.c \
 	check_parsing.c \
+	find_pos.c \
 
 SRC_CK = free.c \
 	intlst.c \

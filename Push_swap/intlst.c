@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intlst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:18:05 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/27 16:51:21 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:14:41 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_intlstsize(t_intlist *lst)
 	int			i;
 
 	if (!lst)
-		return 0;
+		return (0);
 	current = lst;
 	i = 0;
 	while (current != NULL)

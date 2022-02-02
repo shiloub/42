@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:16:36 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/27 17:09:35 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 18:31:35 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void		ft_intlstadd_back(t_intlist **alst, t_intlist *new);
 void		ft_intlstadd_front(t_intlist **alst, t_intlist *new);
 t_intlist	*ft_intlstdup(t_intlist *lst);
 
-
 //*******************strlst.c****************************
 int			ft_strlstsize(t_strlist *lst);
 void		ft_strlstadd_back(t_strlist **alst, t_strlist *new);
@@ -85,13 +84,12 @@ int			index_value(t_intlist *lst, int index);
 
 //*************set_move_rotate_reverse.c**********************
 void		set_move_from_rotate(t_move *elem, int index);
-void		set_move_to_rotate(t_move *elem, t_intlist *to, int value, int indice);
+void		set_move_to_rotate(t_move *elem, t_intlist *to, int v, int indice);
 void		set_move_from_reverse(t_move *elem, t_intlist *from, int index);
-void		set_move_to_reverse(t_move *elem, t_intlist *to, int value, int indice);
-
+void		set_move_to_reverse(t_move *elem, t_intlist *to, int v, int indice);
 
 //********************exec_move.c*****************************
-void		exec_move(t_move *move, t_intlist **from, t_intlist **to, int indice);
+void		exec_move(t_move *move, t_intlist **from, t_intlist **to, int i);
 void		rrr(t_move *move, t_intlist **a, t_intlist **b);
 void		rr(t_move *move, t_intlist **a, t_intlist **b);
 void		exec_r_rr_from(t_move *move, t_intlist **from, int indice);
@@ -117,9 +115,9 @@ void		free_2(t_move *a, t_move *b, t_move *c, t_move *best_move);
 void		ft_free_strlst(t_strlist *lst);
 
 //*********************to_not_push.c***********************
-void		printlsts(t_intlist *a, t_intlist *b);
-void		sort_pushmin(t_intlist *a, t_strlist **commands);
-void		take_op(t_intlist **a, t_intlist **b);
+//void		printlsts(t_intlist *a, t_intlist *b);
+//void		sort_pushmin(t_intlist *a, t_strlist **commands);
+//void		take_op(t_intlist **a, t_intlist **b);
 
 //*********************write_op.c***************************
 void		sa_w(t_intlist *a);
@@ -129,11 +127,12 @@ void		pa_w(t_intlist **a, t_intlist **b);
 void		rra_w(t_intlist **a);
 
 //*********************ft_atoi_exit*************************
-int			ft_atoi_exit(const char *nptr, char **tab, int *int_tab, t_intlist *lst);
-void 		ft_exit(char **tab, int *int_tab, t_intlist *lst);
+int			atoi_ex(const char *nptr, char **tab, int *int_tab, t_intlist *lst);
+void		ft_exit(char **tab, int *int_tab, t_intlist *lst);
 
 //**********************checker.c***************************
 int			do_op(t_intlist **a, t_intlist **b, t_strlist *op);
 void		get_instructions(t_strlist **lst);
 int			do_op_2(t_intlist **a, t_intlist **b, char *str);
+int			ft_return(void);
 #endif

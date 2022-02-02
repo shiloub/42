@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:21:25 by amontant          #+#    #+#             */
-/*   Updated: 2022/01/25 15:44:59 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/02/02 17:45:39 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int	ft_isnum(char c)
 		return (0);
 }
 
-int	ft_atoi_exit(const char *nptr, char **tab, int *int_tab, t_intlist *lst)
+int	atoi_ex(const char *nptr, char **tab, int *int_tab, t_intlist *lst)
 {
-	int i;
-	int	neg;
-	long nbr;
-	
+	int		i;
+	int		neg;
+	long	nbr;
+
 	i = 0;
 	nbr = 0;
 	neg = 1;
@@ -49,19 +49,18 @@ int	ft_atoi_exit(const char *nptr, char **tab, int *int_tab, t_intlist *lst)
 	return (nbr * neg);
 }
 
-void ft_exit(char **tab, int *int_tab, t_intlist *lst)
+void	ft_exit(char **tab, int *int_tab, t_intlist *lst)
 {
 	write(1, "Error\n", 6);
-    if (tab && int_tab)
-    {
+	if (tab && int_tab)
+	{
 		free_split(tab);
 		free(int_tab);
-        exit(0);
-    }
-    else if (lst)
-    {
+		exit(0);
+	}
+	else if (lst)
+	{
 		ft_freelst(lst);
-        exit(0);
-    }
+		exit(0);
+	}
 }
-
