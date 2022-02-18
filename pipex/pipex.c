@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/18 20:06:52 by amontant          #+#    #+#             */
+/*   Updated: 2022/02/18 20:15:00 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	exec_cmd_1(char **av, char **env, int pipefd[2])
@@ -16,7 +28,12 @@ void	exec_cmd_1(char **av, char **env, int pipefd[2])
 	}
 	dup2(infile_fd, 0);
 	dup2(pipefd[1], 1);
-	execve(path, cmd_params, env);
+	if (execve(path, cmd_params, env) == -1)
+	{
+		free_tab(cmd_params);
+		free(path);
+		error("ERROR EXECVE\n");
+	}
 }
 
 void	exec_cmd_2(char **av, char **env, int pipefd[2])
@@ -26,7 +43,6 @@ void	exec_cmd_2(char **av, char **env, int pipefd[2])
 	int		outfile_fd;
 
 	path = find_path(av[3], env, &cmd_params);
-	//printf("je rentre dans command 2\n");
 	outfile_fd = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile_fd == -1 || path == NULL)
 	{
@@ -36,13 +52,16 @@ void	exec_cmd_2(char **av, char **env, int pipefd[2])
 	}
 	dup2(outfile_fd, 1);
 	dup2(pipefd[0], 0);
-	execve(path, cmd_params, env);
+	if (execve(path, cmd_params, env) == -1)
+	{
+		free_tab(cmd_params);
+		free(path);
+		error("ERROR EXECVE\n");
+	}
 }
 
-
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-	
 	int		pipefd[2];
 	pid_t	pid;
 
@@ -65,7 +84,7 @@ int main(int ac, char **av, char **env)
 	else
 	{
 		close(pipefd[1]);
-		exec_cmd_2(av, env,  pipefd);
+		exec_cmd_2(av, env, pipefd);
 	}
-	return 0;
+	return (0);
 }

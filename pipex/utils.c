@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/18 20:19:35 by amontant          #+#    #+#             */
+/*   Updated: 2022/02/18 20:19:36 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 char	**create_paths(char **env)
@@ -6,7 +18,7 @@ char	**create_paths(char **env)
 	char	**paths;
 
 	i = 0;
-	while(ft_strncmp(env[i], "PATH=", 5))
+	while (ft_strncmp(env[i], "PATH=", 5))
 		i++;
 	paths = ft_split(env[i] + 5, ':');
 	return (paths);
@@ -30,6 +42,7 @@ void	free_tab(char **tab)
 	}
 	free(tab);
 }
+
 char	*ft_strjoin_f(char *s1, char const *s2)
 {
 	int		lens1;
@@ -56,6 +69,7 @@ char	*ft_strjoin_f(char *s1, char const *s2)
 	free(s1);
 	return (strcat);
 }
+
 char	*find_path(char *cmd, char **env, char ***cmd_params)
 {
 	char	*path;
@@ -68,7 +82,7 @@ char	*find_path(char *cmd, char **env, char ***cmd_params)
 	i = 0;
 	find = 0;
 	path = NULL;
-	while(paths[i] && !find)
+	while (paths[i] && !find)
 	{
 		free(path);
 		paths[i] = ft_strjoin_f(paths[i], "/");
@@ -79,10 +93,7 @@ char	*find_path(char *cmd, char **env, char ***cmd_params)
 	}
 	free_tab(paths);
 	if (find)
-		return(path);
+		return (path);
 	free(path);
-	return(NULL);
+	return (NULL);
 }
-
-
-
