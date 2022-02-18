@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:16:36 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/02 18:31:35 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:40:28 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			check_sort(t_intlist *a, t_intlist *b);
 int			check_args(int ac, char **av);
 int			check_nodoublons(int *tab, int size);
 int			check_only_digit(char *str);
+int			check_only_digit2(char *nbr);
 
 //********************intlst.c***************************
 t_intlist	*ft_intlstnew(int content);

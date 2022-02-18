@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:09:24 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/02 17:09:28 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:58:54 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int	check_only_digit(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '-' && !ft_isdigit(str[i + 1]))
+			return (0);
+		if (i == 0 && str[i] == '-')
+			i++;
+		else if (i > 0 && str[i - 1] == ' ' && str[i] == '-')
+			i++;
 		if (!ft_isdigit(str[i]) && str[i] != ' ')
 			return (0);
 		i++;
@@ -48,7 +54,6 @@ int	check_sort(t_intlist *a, t_intlist *b)
 int	check_args(int ac, char **av)
 {
 	int	*tab;
-	int	i;
 	int	size;
 
 	if (ac <= 2)
@@ -59,19 +64,33 @@ int	check_args(int ac, char **av)
 		return (0);
 	while (ac >= 2)
 	{
-		i = -1;
-		while (av[ac - 1][++i])
+		if (!check_only_digit2(av[ac - 1]))
 		{
-			if (!ft_isdigit(av[ac - 1][i]))
-			{
-				free(tab);
-				return (0);
-			}
+			free(tab);
+			return (0);
 		}
 		tab[ac - 2] = ft_atoi(av[ac - 1]);
 		ac--;
 	}
 	return (check_nodoublons(tab, size));
+}
+
+int	check_only_digit2(char *nbr)
+{
+	int	i;
+
+	i = 0;
+	if (nbr[0] == '-')
+		i++;
+	if (nbr[0] == '-' && !ft_isdigit(nbr[1]))
+		return (0);
+	while (nbr[i])
+	{
+		if (!ft_isdigit(nbr[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	check_nodoublons(int *tab, int size)

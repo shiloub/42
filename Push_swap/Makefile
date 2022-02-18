@@ -33,7 +33,9 @@ SRC_CK = free.c \
 OBJ_PS = $(SRC_PS:.c=.o)
 OBJ_CK = $(SRC_CK:.c=.o)
 
-all : $(NAME_CK) $(NAME_PS)
+all : $(NAME_PS)
+
+bonus : $(NAME_CK)
 
 $(NAME_PS) : $(OBJ_PS) libft/libft.a
 	$(CC) $(CFLAGS) -o $@ $^ 
