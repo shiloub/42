@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 17:19:05 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/02 17:18:02 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:29:25 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	main(int ac, char **av)
 	{
 		if (ac > 1)
 			write(1, "Error\n", 6);
+		return (0);
+	}
+	if (check_sort(a, b))
+	{
+		ft_freelst(a);
 		return (0);
 	}
 	if (ft_intlstsize(a) > 5)
