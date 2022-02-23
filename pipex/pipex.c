@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:06:52 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/18 20:15:00 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:11:34 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ void	exec_cmd_1(char **av, char **env, int pipefd[2])
 	infile_fd = open(av[1], O_RDONLY);
 	if (infile_fd == -1 || path == NULL)
 	{
+		if (path != cmd_params[0])
+			free(path);
 		free_tab(cmd_params);
-		free(path);
 		error("ERROR BAD COMMAND OR BAD FILE\n");
 	}
 	dup2(infile_fd, 0);
 	dup2(pipefd[1], 1);
+	char *test = "-d ' ' -f 1";
+	cmd_params[1] = test;
 	if (execve(path, cmd_params, env) == -1)
 	{
 		free_tab(cmd_params);
@@ -46,8 +49,9 @@ void	exec_cmd_2(char **av, char **env, int pipefd[2])
 	outfile_fd = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile_fd == -1 || path == NULL)
 	{
+		if (path != cmd_params[0])
+			free(path);
 		free_tab(cmd_params);
-		free(path);
 		error("ERROR BAD COMMAND OR BAD FILE\n");
 	}
 	dup2(outfile_fd, 1);
@@ -65,9 +69,9 @@ int	main(int ac, char **av, char **env)
 	int		pipefd[2];
 	pid_t	pid;
 
-	if (ac != 5)
+	if (ac != 5 || env == NULL)
 	{
-		error("BAD ARGUMENTS\n");
+		error("BAD ARGUMENTS OR ENV NULL\n");
 		return (0);
 	}
 	if (pipe(pipefd) == -1)
@@ -87,4 +91,10 @@ int	main(int ac, char **av, char **env)
 		exec_cmd_2(av, env, pipefd);
 	}
 	return (0);
+}
+
+void	error(char *str)
+{
+	perror(str);
+	exit(EXIT_FAILURE);
 }

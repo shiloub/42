@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:19:35 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/18 20:19:36 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:42:54 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ char	**create_paths(char **env)
 	return (paths);
 }
 
-void	error(char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
-}
-
 void	free_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
+	if (tab == NULL)
+	{
+		return ;
+	}
 	while (tab[i])
 	{
 		free(tab[i]);
@@ -95,5 +93,13 @@ char	*find_path(char *cmd, char **env, char ***cmd_params)
 	if (find)
 		return (path);
 	free(path);
-	return (NULL);
+	return (check_absolute_path(*cmd_params[0]));
+}
+
+char	*check_absolute_path(char *path)
+{
+	if (access(path, F_OK) == 0)
+		return (path);
+	else
+		return (NULL);
 }
