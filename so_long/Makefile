@@ -2,7 +2,7 @@ NAME = test
 CC = gcc
 #CFLAGS = -Wall -Wextra -Werror
 CFLAGS =
-SRC = test.c
+SRC = parsing.c
             
 OBJ = $(SRC:.c=.o)
 
