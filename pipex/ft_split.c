@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:37:20 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/23 18:10:47 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:21:50 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	go_to_next(char const *str, char quote, int i)
 {
+	printf("je rentre dans go next avec i = %d et str[i] = %c\n",i,(int)str[i]);
 	i++;
 	while (str[i])
 	{
 		if (str[i] == quote)
+		{
+			//printf("go to next renvoie %d et s[i] = %c\n", i, (int)str[i]);
 			return (i);
+		}
 		i++;
 	}
 	return (i--);
@@ -35,7 +39,10 @@ char	*setnewstr(char *s, int start, char c)
 	while (s[strl + start] && s[strl + start] != c)
 	{
 		if (s[strl + start] == '\"' || s[strl + start] == '\'')
-			strl = go_to_next(s, s[start + strl], strl);
+		{
+			printf("\n");
+			strl = go_to_next(s, s[start + strl], strl + start) - start;
+		}
 		strl++;
 	}
 	str = malloc(sizeof(char) * (strl + 1));
@@ -64,8 +71,12 @@ int	f_countdel(const char *s, char c)
 		while (s[i] != c && s[i])
 		{
 			if (s[i] == '\'' || s[i] == '\"')
+			{
+				//printf("je dois aller dans go to next\n");
 				i = go_to_next(s, s[i], i);
+			}
 			new = 1;
+			//printf("i = %d est s[i] = %c\n", i, (int)s[i]);
 			i++;
 		}
 		if (new)
@@ -74,6 +85,7 @@ int	f_countdel(const char *s, char c)
 		if (s[i])
 			i++;
 	}
+	printf("je cree un tableau de %d cases\n", count);
 	return (count);
 }
 
@@ -90,8 +102,8 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (s[i])
 	{
-		if (s[i] == '\'' || s[i] == '\"')
-			i = go_to_next(s, s[i], i);
+		//if (s[i] == '\'' || s[i] == '\"')
+		//	i = go_to_next(s, s[i], i);
 		if (s[i] != c)
 		{
 			tab[j] = setnewstr((char *)s, i, c);
