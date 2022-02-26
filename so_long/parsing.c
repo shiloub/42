@@ -35,15 +35,16 @@ char	**set_map(char *map_path)
 		map[i] = get_next_line(fd_map);
 		throw_away_the_cr(map[i]);
 		if (!map[i])
-			break;
+			break ;
 		i++;
 	}
 	close(fd_map);
 	return (map);
 }
+
 void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -61,18 +62,19 @@ void	throw_away_the_cr(char *str)
 	i = 0;
 	if (!str)
 		return ;
-	while(str[i])
+	while (str[i])
 	{
 		i ++;
 	}
 	if (str[i - 1] == '\n')
 		str[i - 1] = 0;
 }
+
 int main(int ac, char **av)
 {
-	char **map;
-	int i;
-	int j;
+	char	**map;
+	int		i;
+	int		j;
 
 	map = set_map(av[1]);
 	i = 0;

@@ -2,7 +2,10 @@ NAME = test
 CC = gcc
 #CFLAGS = -Wall -Wextra -Werror
 CFLAGS =
-SRC = parsing.c
+SRC = parsing.c\
+	check_map.c\
+	gnl/get_next_line.c\
+	gnl/get_next_line_utils.c\
             
 OBJ = $(SRC:.c=.o)
 
