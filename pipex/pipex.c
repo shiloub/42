@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:06:52 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/23 17:11:34 by amontant         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:56:55 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	exec_cmd_1(char **av, char **env, int pipefd[2])
 	}
 	dup2(infile_fd, 0);
 	dup2(pipefd[1], 1);
-	char *test = "-d ' ' -f 1";
-	cmd_params[1] = test;
 	if (execve(path, cmd_params, env) == -1)
 	{
 		free_tab(cmd_params);
@@ -69,7 +67,7 @@ int	main(int ac, char **av, char **env)
 	int		pipefd[2];
 	pid_t	pid;
 
-	if (ac != 5 || env == NULL)
+	if (ac != 5 || env[0] == NULL)
 	{
 		error("BAD ARGUMENTS OR ENV NULL\n");
 		return (0);
@@ -77,7 +75,6 @@ int	main(int ac, char **av, char **env)
 	if (pipe(pipefd) == -1)
 		error("PROCESS CAN'T PIPE");
 	pid = fork();
-	wait(NULL);
 	if (pid == -1)
 		error("PROCESS CAN'T FORK");
 	if (pid == 0)
@@ -85,11 +82,12 @@ int	main(int ac, char **av, char **env)
 		close(pipefd[0]);
 		exec_cmd_1(av, env, pipefd);
 	}
-	else
+	if (pid != 0)
 	{
 		close(pipefd[1]);
 		exec_cmd_2(av, env, pipefd);
 	}
+	wait(NULL);
 	return (0);
 }
 
