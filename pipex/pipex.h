@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:19:44 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/23 16:48:51 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/01 12:08:08 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	free_to_error(char **paths, char **cmd_params);
 
 #endif

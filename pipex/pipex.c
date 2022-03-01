@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:06:52 by amontant          #+#    #+#             */
-/*   Updated: 2022/02/25 18:56:55 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/01 12:15:43 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,21 @@ int	main(int ac, char **av, char **env)
 	}
 	wait(NULL);
 	return (0);
+}
+
+void	free_to_error(char **paths, char **cmd_params)
+{
+	int	i;
+
+	i = 0;
+	while (paths[i])
+	{
+		free(paths[i]);
+		i++;
+	}
+	free(paths);
+	free(cmd_params);
+	error("Commmand empty");
 }
 
 void	error(char *str)
