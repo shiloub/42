@@ -42,19 +42,6 @@ char	**set_map(char *map_path)
 	return (map);
 }
 
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 void	throw_away_the_cr(char *str)
 {
 	int	i;
@@ -70,29 +57,24 @@ void	throw_away_the_cr(char *str)
 		str[i - 1] = 0;
 }
 
-int main(int ac, char **av)
+int	check_rectangle(char **map)
 {
-	char	**map;
-	int		i;
-	int		j;
+	int	line_size;
+	int	i;
+	int	check;
 
-	map = set_map(av[1]);
 	i = 0;
+	line_size = 0;
+	while (map[0][line_size])
+		line_size++;
 	while (map[i])
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			printf("%c", (int)map[i][j]);
-			j ++;
-		}
-		printf("\n");
+		check = 0;
+		while (map[i][check])
+			check++;
+		if (check != line_size)
+			return (0);
 		i++;
 	}
-	if (check_map(map) == 1)
-		printf("map ok\n");
-	else
-		printf("map KO");
-	free_map(map);
-	return 0;
+	return (1);
 }
