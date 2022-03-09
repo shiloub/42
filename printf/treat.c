@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:29:49 by amontant          #+#    #+#             */
-/*   Updated: 2021/12/23 12:26:22 by shiloub          ###   ########.fr       */
+/*   Updated: 2021/12/23 18:57:36 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	treat_p(void *p)
 	unsigned long long	nb;
 
 	if (!p)
-		return (count_putstr("(nil)"));
+		return (count_putstr("0x0"));
 	nb = (unsigned long long)p;
 	write(1, "0x", 2);
 	ft_putnbr_hexa_ull(nb);
