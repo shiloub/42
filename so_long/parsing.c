@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 14:17:39 by amontant          #+#    #+#             */
+/*   Updated: 2022/03/09 14:17:40 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	count_line(char *map_path)
@@ -13,7 +25,7 @@ int	count_line(char *map_path)
 	{
 		line = get_next_line(fd_map);
 		if (!line)
-			break;
+			break ;
 		free(line);
 		count ++;
 	}

@@ -1,5 +1,16 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 14:17:47 by amontant          #+#    #+#             */
+/*   Updated: 2022/03/09 14:18:05 by amontant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "so_long.h"
 
 void	print_map(t_game *game)
 {
@@ -24,12 +35,8 @@ void	print_map(t_game *game)
 	}
 }
 
-
-
-
 void	print_texture(t_game *game, char c, int x, int y)
 {
-	//printf("c = %c , x = %d et y = %d\n", c, x, y);
 	if (c == '1')
 		mlx_put_image_to_window(game->mlx, game->win, game->wall, x, y);
 	else if (c == '0')
