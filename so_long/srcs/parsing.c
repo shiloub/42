@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:17:39 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/09 19:00:06 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/10 14:51:07 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	**set_map(char *map_path)
 		i++;
 	}
 	close(fd_map);
+	if (!map[0])
+		return (NULL);
 	if (!check_map(map))
 	{
 		free_map(map);

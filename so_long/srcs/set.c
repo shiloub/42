@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:29:48 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/09 19:09:23 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:46:34 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_game	*set_game(char *map_path)
 	g->map = set_map(map_path);
 	if (!g->map)
 	{
-		printf("ERROR_MAP\n");
+		printf("Error\nInvalid map format");
 		free(g);
 		exit (1);
 	}

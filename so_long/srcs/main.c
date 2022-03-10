@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:00:32 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/09 18:59:53 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:45:28 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	fonction(int key, t_game *game)
 			*game->count += go_up(game->map);
 	}
 	if (temp != *game->count)
-		printf("->%d\n", *game->count);
+		ft_printf("%d\n", *game->count);
 	open_door_if_necessary(game->map);
 	if (no_door(game->map))
 		exit_game(game);
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 
 	if (check_error(ac, av))
 	{
-		printf("ERROR");
+		printf("Error\nWrong argument");
 		return (0);
 	}
 	game = set_game(av[1]);

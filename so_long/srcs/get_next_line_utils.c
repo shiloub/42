@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:20:16 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/09 19:14:44 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/10 12:49:49 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,17 @@ int	ft_strchr(char *str, char c)
 	}
 	return (0);
 }
-
-int	ft_strlen(const char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
-	{
-		i ++;
-	}
+		i++;
 	return (i);
 }
-
 char	*ft_strdup(const char *s)
 {
 	int		s_len;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 15:37:41 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/09 19:13:37 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:33:12 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef struct s_game
 	int		*y;
 	int		*count;
 }	t_game;
-//*********************check_map*************************//
+//*********************check_map.c***********************//
 int		check_map(char **map);
+
+//*********************check_map_ft.c********************//
 int		check_walls(char **map);
 int		check_last_wall(char **map, int x);
 int		check_player_exit(char **map);
@@ -58,7 +60,7 @@ t_game	*set_game(char *map_path);
 int		map_w(char **map);
 int		map_h(char **map);
 
-//*******************print_map.c**************************//
+//*******************print_map.c************************//
 void	print_map(t_game *game);
 void	print_texture(t_game *game, char c, int x, int y);
 
@@ -68,14 +70,15 @@ int		go_down(char **map);
 int		go_up(char **map);
 int		go_right(char **map);
 
-//*********************open_door.c***********************//
+//*********************open_door.c**********************//
 void	open_door_if_necessary(char **map);
 int		no_door(char **map);
 void	change_door(char **map);
 
-//**************************finish.c*********************//
+//**************************finish.c********************//
 void	free_game(t_game *game);
 void	free_map(char **map);
 void	exit_game(t_game *game);
 
+int		ft_printf(char const *str, ...);
 #endif
