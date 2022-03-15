@@ -18,14 +18,17 @@ OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
-$(NAME): $(OBJ) printf/libftprintf.a
+$(NAME): mlx_linux/libmlx_Linux.a $(OBJ) srcs/printf/libftprintf.a
 	$(CC) $^ -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@ 
 
-printf/libftprintf.a :
-	cd printf && make && make clean && cd ..
+srcs/printf/libftprintf.a :
+	cd srcs/printf && make && make clean && cd ../..
+
+mlx_linux/libmlx_Linux.a:
+	$(MAKE) -C mlx_linux 
 
 clean :
 	rm -rf $(OBJ)
@@ -34,6 +37,3 @@ fclean : clean
 	rm -rf $(NAME)
 
 re : fclean all
-
-#-fsanitize=address
-#-fsanitize=address

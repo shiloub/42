@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:00:32 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/10 13:45:28 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/03/10 17:08:22 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int	fonction(int key, t_game *game)
 	temp = *game->count;
 	if (key == 65307)
 		exit_game(game);
-	if (key == 65362 || key == 65364 || key == 65361 || key == 65363)
+	if (key == 'w' || key == 'a' || key == 's' || key == 'd')
 	{
-		if (key == 65363)
+		if (key == 'd')
 			*game->count += go_right(game->map);
-		else if (key == 65361)
+		else if (key == 'a')
 			*game->count += go_left(game->map);
-		else if (key == 65362)
+		else if (key == 'w')
 			*game->count += go_down(game->map);
-		else if (key == 65364)
+		else if (key == 's')
 			*game->count += go_up(game->map);
 	}
 	if (temp != *game->count)

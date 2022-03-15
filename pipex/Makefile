@@ -19,7 +19,7 @@ $(NAME) : $(OBJ)
 	$(CC) -o $@ -c $^ $(CFLAGS)
 
 clean :
-	rm -rf *.o
+	rm -rf $(OBJ)
 
 fclean : clean
 	rm -f $(NAME)

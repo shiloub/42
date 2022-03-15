@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:20:16 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/10 17:00:30 by amontant         ###   ########.fr       */
+/*   Updated: 2022/01/02 16:40:11 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_strchr(char *str, char c)
+int	ft_strchr_gnl(char *str, char c)
 {
 	int	i;
 
@@ -27,19 +27,19 @@ int	ft_strchr(char *str, char c)
 	return (0);
 }
 
-static int	ft_strlen(char *str)
+int	ft_strlen_gnl(const char *str)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
-		return (0);
 	while (str[i])
-		i++;
+	{
+		i ++;
+	}
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup_gnl(const char *s)
 {
 	int		s_len;
 	char	*s_;
@@ -48,7 +48,7 @@ char	*ft_strdup(const char *s)
 
 	i = 0;
 	s_ = (char *)s;
-	s_len = ft_strlen(s_);
+	s_len = ft_strlen_gnl(s_);
 	s2 = malloc(sizeof(char) * s_len + 1);
 	if (!s2)
 		return (NULL);
@@ -61,15 +61,15 @@ char	*ft_strdup(const char *s)
 	return (s2);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	int		lens1;
 	char	*strcat;
 	int		i;
 
-	lens1 = ft_strlen((char *)s1);
+	lens1 = ft_strlen_gnl((char *)s1);
 	i = 0;
-	strcat = malloc(sizeof(char) * (lens1 + ft_strlen((char *)s2) + 1));
+	strcat = malloc(sizeof(char) * (lens1 + ft_strlen_gnl((char *)s2) + 1));
 	if (!strcat)
 		return (0);
 	while (s1[i])
@@ -93,9 +93,9 @@ char	*ft_strjoin_f(char *s1, char const *s2)
 	char	*strcat;
 	int		i;
 
-	lens1 = ft_strlen((char *)s1);
+	lens1 = ft_strlen_gnl((char *)s1);
 	i = 0;
-	strcat = malloc(sizeof(char) * (lens1 + ft_strlen((char *)s2) + 1));
+	strcat = malloc(sizeof(char) * (lens1 + ft_strlen_gnl((char *)s2) + 1));
 	if (!strcat)
 		return (0);
 	while (s1[i])

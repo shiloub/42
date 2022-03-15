@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 15:37:41 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/10 13:33:12 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/03/10 16:58:56 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include "get_next_line.h"
 # include "../mlx_linux/mlx.h"
-# include "../printf/ft_printf.h"
+# include "../srcs/printf/ft_printf.h"
 
 typedef struct s_game
 {

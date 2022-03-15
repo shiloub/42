@@ -1,21 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   write_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/26 15:36:16 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/10 17:00:18 by amontant         ###   ########.fr       */
+/*   Created: 2022/02/02 17:20:23 by amontant          #+#    #+#             */
+/*   Updated: 2022/02/02 17:20:24 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#include "push_swap.h"
 
-int	check_map(char **map)
+void	sa_w(t_intlist *a)
 {
-	if (check_walls(map) && check_player_exit(map) && check_rectangle(map))
-		return (1);
-	else
-		return (0);
+	swap(a);
+	write(1, "sa\n", 3);
+}
+
+void	ra_w(t_intlist **a)
+{
+	rotate(a);
+	write(1, "ra\n", 3);
+}
+
+void	pb_w(t_intlist **a, t_intlist **b)
+{
+	push(a, b);
+	write(1, "pb\n", 3);
+}
+
+void	pa_w(t_intlist **a, t_intlist **b)
+{
+	push(b, a);
+	write(1, "pa\n", 3);
+}
+
+void	rra_w(t_intlist **a)
+{
+	reverse_rotate(a);
+	write(1, "rra\n", 4);
 }
