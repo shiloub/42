@@ -3,105 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:06:52 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/15 18:05:28 by amontant         ###   ########.fr       */
+/*   Updated: 2022/03/20 14:33:57 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	exec_cmd_1(char **av, char **env, int pipefd[2])
+void	exec_cmd_1(char **av, char **env, t_process *process)
 {
-	char	*path;
-	char	**cmd_params;
 	int		infile_fd;
-
-	path = find_path(av[2], env, &cmd_params);
-	infile_fd = open(av[1], O_RDONLY);
-	if (infile_fd == -1 || path == NULL)
+	int		pid;
+	
+	if (pipe(process->pipe_fd) == -1)
+		error("PROCESS CAN'T PIPE");
+	pid = fork();
+	if (pid == 0)
+		exec_cmd_2(av, env, process);
+	else
 	{
-		error_path_fd(infile_fd, path, cmd_params, av[1]);
+		close(process->pipe_fd[0]);
+		infile_fd = open(av[1], O_RDONLY);
+		process->infile_fd = infile_fd;
+		if (infile_fd == -1 || process->path_1 == NULL)
+			error_path_fd_1(process, av[1]);
+		dup2(infile_fd, 0);
+		dup2(process->pipe_fd[1], 1);
+		if (execve(process->path_1, process->cmd_params_1, env) == -1)
+		{
+			free_tab(process->cmd_params_1);
+			free(process->path_1);
+			close(process->pipe_fd[1]);
+			error("ERROR EXECVE\n");
+		}
 	}
-	dup2(infile_fd, 0);
-	dup2(pipefd[1], 1);
-	if (execve(path, cmd_params, env) == -1)
+}
+
+void	exec_cmd_2(char **av, char **env, t_process *process)
+{
+	int		outfile_fd;
+
+	close(process->pipe_fd[1]);
+	outfile_fd = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	process->outfile_fd = outfile_fd;
+	if (outfile_fd == -1 || process->path_2 == NULL)
+		error_path_fd_2(process, av[4]);
+	dup2(outfile_fd, 1);
+	dup2(process->pipe_fd[0], 0);
+	if (execve(process->path_2, process->cmd_params_2, env) == -1)
 	{
-		free_tab(cmd_params);
-		free(path);
+		free_tab(process->cmd_params_2);
+		free(process->path_2);
+		close(process->pipe_fd[0]);
 		error("ERROR EXECVE\n");
 	}
 }
 
-void	exec_cmd_2(char **av, char **env, int pipefd[2])
+t_process	*set_process(int ac, char **av, char **env)
 {
-	char	*path;
-	char	**cmd_params;
-	int		outfile_fd;
+	t_process *process;
+	
+	process = malloc(sizeof(t_process));
+	init_process(process);
+	process->path_1 = find_path(av[2], env, &process->cmd_params_1, process);
+	process->path_2 = find_path(av[3], env, &process->cmd_params_2, process);
+	return (process);
+}
 
-	path = find_path(av[3], env, &cmd_params);
-	outfile_fd = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (outfile_fd == -1 || path == NULL)
-	{
-		error_path_fd(outfile_fd, path, cmd_params, av[2]);
-	}
-	dup2(outfile_fd, 1);
-	dup2(pipefd[0], 0);
-	if (execve(path, cmd_params, env) == -1)
-	{
-		free_tab(cmd_params);
-		free(path);
-		error("ERROR EXECVE\n");
-	}
+void	init_process(t_process *process)
+{
+	process->cmd_params_1 = NULL;
+	process->cmd_params_2 = NULL;
+	process->path_1 = NULL;
+	process->path_2 = NULL;
 }
 
 int	main(int ac, char **av, char **env)
 {
-	int		pipefd[2];
-	pid_t	pid;
+	t_process	*process;
+	int			pid;
 
 	if (ac != 5 || env[0] == NULL)
 	{
 		error("BAD ARGUMENTS OR ENV NULL\n");
 		return (0);
 	}
-	if (pipe(pipefd) == -1)
-		error("PROCESS CAN'T PIPE");
+	process = set_process(ac, av, env);
 	pid = fork();
 	if (pid == -1)
-		error("PROCESS CAN'T FORK");
+		error("PROCESS CAN'T FORK\n");
 	if (pid == 0)
-	{
-		close(pipefd[0]);
-		exec_cmd_1(av, env, pipefd);
-	}
-	if (pid != 0)
-	{
-		close(pipefd[1]);
-		exec_cmd_2(av, env, pipefd);
-	}
-	wait(NULL);
+		exec_cmd_1(av, env, process);
+	free_process(process);
 	return (0);
 }
 
-void	free_to_error(char **paths, char **cmd_params)
+void	free_process(t_process *process)
 {
-	int	i;
-
-	i = 0;
-	while (paths[i])
-	{
-		free(paths[i]);
-		i++;
-	}
-	free(paths);
-	free(cmd_params);
-	error("Commmand empty");
-}
-
-void	error(char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
+	free_tab(process->cmd_params_1);
+	free_tab(process->cmd_params_2);
+	free(process->path_1);
+	free(process->path_2);
+	free(process);
 }

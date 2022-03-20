@@ -6,7 +6,7 @@
 /*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:19:35 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/01 12:15:34 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/03/20 13:36:27 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_strjoin_f(char *s1, char const *s2)
 	return (strcat);
 }
 
-char	*find_path(char *cmd, char **env, char ***cmd_params)
+char	*find_path(char *cmd, char **env, char ***cmd_params, t_process *p)
 {
 	char	*path;
 	char	**paths;
@@ -81,7 +81,7 @@ char	*find_path(char *cmd, char **env, char ***cmd_params)
 	find = 0;
 	path = NULL;
 	if (*cmd_params[0] == NULL)
-		free_to_error(paths, *cmd_params);
+		free_to_exit(paths, *cmd_params, p);
 	while (paths[++i] && !find)
 	{
 		free(path);
