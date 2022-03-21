@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 20:19:35 by amontant          #+#    #+#             */
-/*   Updated: 2022/03/20 13:36:27 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/03/21 19:05:16 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*find_path(char *cmd, char **env, char ***cmd_params, t_process *p)
 	find = 0;
 	path = NULL;
 	if (*cmd_params[0] == NULL)
-		free_to_exit(paths, *cmd_params, p);
+		free_to_exit(paths, p);
 	while (paths[++i] && !find)
 	{
 		free(path);
@@ -100,7 +100,7 @@ char	*find_path(char *cmd, char **env, char ***cmd_params, t_process *p)
 char	*check_absolute_path(char *path)
 {
 	if (access(path, F_OK) == 0)
-		return (path);
+		return (ft_strdup(path));
 	else
 		return (NULL);
 }

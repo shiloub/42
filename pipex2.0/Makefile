@@ -1,6 +1,6 @@
 NAME = pipex
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRC = pipex.c \
 	utils.c \
 	ft_split.c \
@@ -8,6 +8,7 @@ SRC = pipex.c \
 	ft_strlen.c \
 	ft_strjoin.c \
 	errors.c \
+	ft_strdup.c \
 		
 OBJ = $(SRC:.c=.o)
 
