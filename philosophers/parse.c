@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:19:13 by amontant          #+#    #+#             */
-/*   Updated: 2022/06/20 16:06:08 by amontant         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:49:45 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_arg(int ac, char **av)
 	if (ac < 5 || ac > 6)
 	{
 		printf("wrong number of arguments\n");
-		return (-1);  
+		exit(0);  
 	}
 	while (i < ac)
 	{
@@ -41,17 +41,18 @@ int	check_numbers(char *number)
 		if (number[i] < '0' || number[i] > '9')
 		{
 			printf("arg isnt valid\n");
-			return (0);
+			exit(0);
 		}
 		i++;
 	}
 	return (1);
 }
 
-int	parsing(t_all *all, int ac, char **av)
+t_philo	*parsing(t_all *all, int ac, char **av)
 {
 	int	i;
-
+	t_philo *philos;
+	
 	i = 0;
 	if (check_arg(ac, av) == 0)
         printf("args are valid\n");
@@ -61,7 +62,16 @@ int	parsing(t_all *all, int ac, char **av)
 	all->die = ft_atoi(av[2]);
 	all->eat = ft_atoi(av[3]);
 	all->sleep = ft_atoi(av[4]);
+	philos = malloc(sizeof(t_philo) * all->nb_philo);
+	while (i < all->nb_philo)
+	{
+		philos[i].index = i + 1;
+		philos[i].all = all;
+		philos[i].is_eating = 0;
+		philos[i].last_meal = 0;
+		i++;
+	}
 	if (ac == 6)
 		all->nb_eat = ft_atoi(av[5]);
-	return (1);
+	return (philos);
 }

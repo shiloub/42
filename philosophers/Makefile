@@ -4,6 +4,7 @@ CFLAGS = -pthread #-Wall -Wextra -Werror
 SRC = main.c \
 		parse.c \
 		ft_atoi.c \
+		time.c \
 
 
 OBJ = $(SRC:.c=.o)
