@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:37:17 by amontant          #+#    #+#             */
-/*   Updated: 2022/06/28 14:06:36 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:55:12 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_all
 	unsigned int	nb_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t print;
+	pthread_mutex_t is_dead;
+	
 }	t_all;
 
 typedef struct	s_philo
@@ -40,6 +42,7 @@ typedef struct	s_philo
 	pthread_t	thread;
 	int			dead;
 	unsigned long last_meal;
+	int			eaten;
 }	t_philo;
 
 int	ft_atoi(const char *nptr);

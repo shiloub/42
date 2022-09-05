@@ -6,25 +6,31 @@ int	take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->all->forks[philo->index - 1]);
 	pthread_mutex_lock(&philo->all->print);
+	pthread_mutex_lock(&philo->all->is_dead);
 	if (philo->all->dead == 1)
 	{
-		pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
+		pthread_mutex_unlock(&philo->all->is_dead);
 		pthread_mutex_unlock(&philo->all->print);
+		pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 		return(1);
 	}
+	pthread_mutex_unlock(&philo->all->is_dead);
 	printf("%ld %d has taken a fork %d\n", g_t(philo), philo->index, philo->index - 1);
 	pthread_mutex_unlock(&philo->all->print);
 	if (philo->index == philo->all->nb_philo)
 	{
 		pthread_mutex_lock(&philo->all->forks[0]);
 		pthread_mutex_lock(&philo->all->print);
+		pthread_mutex_lock(&philo->all->is_dead);
 		if (philo->all->dead == 1)
 		{
-			pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
-			pthread_mutex_unlock(&philo->all->forks[0]);
+			pthread_mutex_unlock(&philo->all->is_dead);
 			pthread_mutex_unlock(&philo->all->print);
+			pthread_mutex_unlock(&philo->all->forks[0]);
+			pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 			return(1);
 		}
+		pthread_mutex_unlock(&philo->all->is_dead);
 		printf("%ld %d has taken a fork %d\n", g_t(philo), philo->index, 0);
 		pthread_mutex_unlock(&philo->all->print);
 	}
@@ -32,13 +38,16 @@ int	take_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->all->forks[philo->index]);
 		pthread_mutex_lock(&philo->all->print);
+		pthread_mutex_lock(&philo->all->is_dead);
 		if (philo->all->dead == 1)
 		{
-			pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
-			pthread_mutex_unlock(&philo->all->forks[philo->index]);
+			pthread_mutex_unlock(&philo->all->is_dead);
 			pthread_mutex_unlock(&philo->all->print);
+			pthread_mutex_unlock(&philo->all->forks[philo->index]);
+			pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 			return(1);
 		}
+		pthread_mutex_unlock(&philo->all->is_dead);
 		printf("%ld %d has taken a fork %d\n", g_t(philo), philo->index, philo->index);
 		pthread_mutex_unlock(&philo->all->print);
 	}
@@ -75,7 +84,9 @@ void	ft_monitoring_real(t_philo *philos)
 		{
 			if (!philos[i].is_eating && do_i_die(&philos[i]) == 1)
 			{
+				pthread_mutex_lock(&philos->all->is_dead);
 				philos->all->dead = 1;
+				pthread_mutex_unlock(&philos->all->is_dead);
 				pthread_mutex_lock(&philos->all->print);
 				printf("%ld %d died cuz last meal was %ld\n", g_t(philos), i + 1, philos[i].last_meal);
 				pthread_mutex_unlock(&philos->all->print);
@@ -94,11 +105,11 @@ void	*ft_monitoring(void *arg)
 
 int	drop_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 	if (philo->index == philo->all->nb_philo)
 		pthread_mutex_unlock(&philo->all->forks[0]);
 	else
 		pthread_mutex_unlock(&philo->all->forks[philo->index]);
+	pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 	return (0);
 }
 
@@ -106,42 +117,51 @@ int	eat(t_philo *philo)
 {
 	philo->is_eating = 1;
 	pthread_mutex_lock(&philo->all->print);
+	pthread_mutex_lock(&philo->all->is_dead);
 	if (philo->all->dead == 1)
 	{
-
-		pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
+		pthread_mutex_unlock(&philo->all->is_dead);
+		pthread_mutex_unlock(&philo->all->print);
 		if (philo->index == philo->all->nb_philo)
 			pthread_mutex_unlock(&philo->all->forks[0]);
 		else
 			pthread_mutex_unlock(&philo->all->forks[philo->index]);
-		pthread_mutex_unlock(&philo->all->print);
+		pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 		return(1);
 	}
+	pthread_mutex_unlock(&philo->all->is_dead);
 	printf("%ld %d is eating\n", g_t(philo), philo->index);
 	pthread_mutex_unlock(&philo->all->print);
 	my_usleep(philo->all->eat * 1000, philo);
 	philo->last_meal = g_t(philo);
 	philo->is_eating = 0;
+	philo->eaten++;
 	return (0);
 }
 
 int	go_to_bed(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->all->print);
+	pthread_mutex_lock(&philo->all->is_dead);
 	if (philo->all->dead == 1)
 	{
+		pthread_mutex_unlock(&philo->all->is_dead);
 		pthread_mutex_unlock(&philo->all->print);
 		return(1);
 	}
+	pthread_mutex_unlock(&philo->all->is_dead);
 	printf("%ld %d is sleeping\n", g_t(philo), philo->index);
 	pthread_mutex_unlock(&philo->all->print);
 	my_usleep(philo->all->sleep * 1000, philo);
 	pthread_mutex_lock(&philo->all->print);
+	pthread_mutex_lock(&philo->all->is_dead);
 	if (philo->all->dead == 1)
 	{
+		pthread_mutex_unlock(&philo->all->is_dead);
 		pthread_mutex_unlock(&philo->all->print);
 		return(1);
 	}
+	pthread_mutex_unlock(&philo->all->is_dead);
 	printf("%ld %d is thinking\n", g_t(philo), philo->index);
 	pthread_mutex_unlock(&philo->all->print);
 	return (0);
@@ -149,6 +169,7 @@ int	go_to_bed(t_philo *philo)
 
 void	routine_real(t_philo *philo)
 {
+	philo->eaten = 0;
 	while (1)
 	{
 		if (take_forks(philo) == 1)
@@ -159,8 +180,9 @@ void	routine_real(t_philo *philo)
 			break;
 		if (go_to_bed(philo) == 1)
 			break;
+		if (philo->eaten == philo->all->nb_eat)
+			break;
 	}
-	//printf("philo %d : je termine ma routine\n", philo->index);
 }
 
 void	*routine(void *arg)
@@ -180,7 +202,7 @@ void	set_forks(t_all *all)
 		pthread_mutex_init(&all->forks[i], NULL);
 		i++;
 	}
-
+	pthread_mutex_init(&all->is_dead, NULL);
 	pthread_mutex_init(&all->print, NULL);
 }
 
@@ -197,7 +219,6 @@ int	main(int ac, char **av)
 	all->time_start = get_actual_time();
 	all->nb_eat = -1;
 	all->dead = 0;
-	//all->forks = malloc(sizeof(pthread_mutex_t));
 	philos = parsing(all, ac, av);
 	set_forks(all);
 	pthread_create(&monitoring, NULL, ft_monitoring, philos);

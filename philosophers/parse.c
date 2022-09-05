@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:19:13 by amontant          #+#    #+#             */
-/*   Updated: 2022/06/28 12:49:45 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:35:09 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_philo	*parsing(t_all *all, int ac, char **av)
 	int	i;
 	t_philo *philos;
 	
+	all->nb_eat = -1;
 	i = 0;
 	if (check_arg(ac, av) == 0)
         printf("args are valid\n");
