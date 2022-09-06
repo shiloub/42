@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:00:09 by shiloub           #+#    #+#             */
-/*   Updated: 2022/09/06 16:34:01 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:41:40 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,14 @@ void	my_usleep(unsigned long usec, t_philo *philo)
 		gettimeofday(&time, NULL);
 		time_actual = (time.tv_sec * 1000000) + (time.tv_usec);
 		if (philo != NULL)
+		{
+			pthread_mutex_lock(&philo->all->is_dead);
 			if (philo->all->dead == 1)
-				break ;
+			{
+				pthread_mutex_unlock(&philo->all->is_dead);
+				break ;	
+			}
+			pthread_mutex_unlock(&philo->all->is_dead);
+		}
 	}
 }

@@ -57,7 +57,9 @@ int	take_forks(t_philo *philo)
 void	ft_monitoring_real(t_philo *philos)
 {
 	int	i;
+	int	count;
 
+	count = 0;
 	while (1)
 	{
 		i = 0;
@@ -76,6 +78,12 @@ void	ft_monitoring_real(t_philo *philos)
 				return ;
 			}
 			pthread_mutex_unlock(&philos[i].last_meal_mut);
+			pthread_mutex_lock(&philos[i].eaten_mut);
+			if (philos[i].eaten == philos[i].all->nb_eat)
+				count++;
+			pthread_mutex_unlock(&philos[i].eaten_mut);
+			if (count == philos[i].all->nb_philo)
+				return ;
 			i++;
 		}
 	}
@@ -119,7 +127,9 @@ int	eat(t_philo *philo)
 	printf("%ld %d is eating\n", g_t(philo), philo->index);
 	pthread_mutex_unlock(&philo->all->print);
 	my_usleep(philo->all->eat * 1000, philo);
+	pthread_mutex_lock(&philo->eaten_mut);
 	philo->eaten++;
+	pthread_mutex_unlock(&philo->eaten_mut);
 	return (0);
 }
 
@@ -153,7 +163,6 @@ int	go_to_bed(t_philo *philo)
 
 void	routine_real(t_philo *philo)
 {
-	philo->eaten = 0;
 	while (1)
 	{
 		if (take_forks(philo) == 1)
@@ -164,10 +173,15 @@ void	routine_real(t_philo *philo)
 			break;
 		if (go_to_bed(philo) == 1)
 			break;
+		pthread_mutex_lock(&philo->eaten_mut);
 		if (philo->eaten == philo->all->nb_eat)
+		{
+			pthread_mutex_unlock(&philo->eaten_mut);
 			break;
+		}
+		pthread_mutex_unlock(&philo->eaten_mut);
+		
 	}
-	printf("je break\n");
 }
 
 void	*routine(void *arg)

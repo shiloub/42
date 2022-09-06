@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:19:13 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/05 16:35:09 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:29:39 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,12 @@ t_philo	*parsing(t_all *all, int ac, char **av)
 	{
 		philos[i].index = i + 1;
 		philos[i].all = all;
+		philos[i].eaten = 0;
 		philos[i].is_eating = 0;
 		philos[i].last_meal = 0;
+		pthread_mutex_init(&philos[i].is_eating_mut, NULL);
+		pthread_mutex_init(&philos[i].last_meal_mut, NULL);
+		pthread_mutex_init(&philos[i].eaten_mut, NULL);
 		i++;
 	}
 	if (ac == 6)

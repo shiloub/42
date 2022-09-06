@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:37:17 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/06 16:18:05 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:25:42 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_philo
 	unsigned long last_meal;
 	pthread_mutex_t last_meal_mut;
 	int			eaten;
+	pthread_mutex_t eaten_mut;
 }	t_philo;
 
 int	ft_atoi(const char *nptr);
