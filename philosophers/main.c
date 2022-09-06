@@ -167,6 +167,7 @@ void	routine_real(t_philo *philo)
 		if (philo->eaten == philo->all->nb_eat)
 			break;
 	}
+	printf("je break\n");
 }
 
 void	*routine(void *arg)
