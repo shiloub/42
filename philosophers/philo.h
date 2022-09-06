@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:37:17 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/05 16:55:12 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:18:05 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ typedef struct	s_philo
 	int			index;
 	t_all		*all;
 	int			is_eating;
+	pthread_mutex_t is_eating_mut;
 	pthread_t	thread;
 	int			dead;
 	unsigned long last_meal;
+	pthread_mutex_t last_meal_mut;
 	int			eaten;
 }	t_philo;
 

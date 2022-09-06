@@ -54,25 +54,6 @@ int	take_forks(t_philo *philo)
 	return (0);
 }
 
-// void	unlock_all_forks(t_philo *philo)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < philo->all->nb_philo)
-// 	{
-// 		pthread_mutex_lock(&philo->all->forks[i]);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < philo->all->nb_philo)
-// 	{
-// 		pthread_mutex_unlock(&philo->all->forks[i]);
-// 		i++;
-// 	}
-// }
-//void	do_i_die_verbose(t_philo *philo);
-
 void	ft_monitoring_real(t_philo *philos)
 {
 	int	i;
@@ -82,8 +63,10 @@ void	ft_monitoring_real(t_philo *philos)
 		i = 0;
 		while (i < philos[0].all->nb_philo)
 		{
-			if (!philos[i].is_eating && do_i_die(&philos[i]) == 1)
+			pthread_mutex_lock(&philos[i].last_meal_mut);
+			if (do_i_die(&philos[i]) == 1)
 			{
+				pthread_mutex_unlock(&philos[i].last_meal_mut);
 				pthread_mutex_lock(&philos->all->is_dead);
 				philos->all->dead = 1;
 				pthread_mutex_unlock(&philos->all->is_dead);
@@ -92,6 +75,7 @@ void	ft_monitoring_real(t_philo *philos)
 				pthread_mutex_unlock(&philos->all->print);
 				return ;
 			}
+			pthread_mutex_unlock(&philos[i].last_meal_mut);
 			i++;
 		}
 	}
@@ -115,7 +99,6 @@ int	drop_forks(t_philo *philo)
 
 int	eat(t_philo *philo)
 {
-	philo->is_eating = 1;
 	pthread_mutex_lock(&philo->all->print);
 	pthread_mutex_lock(&philo->all->is_dead);
 	if (philo->all->dead == 1)
@@ -133,8 +116,9 @@ int	eat(t_philo *philo)
 	printf("%ld %d is eating\n", g_t(philo), philo->index);
 	pthread_mutex_unlock(&philo->all->print);
 	my_usleep(philo->all->eat * 1000, philo);
+	pthread_mutex_lock(&philo->last_meal_mut);
 	philo->last_meal = g_t(philo);
-	philo->is_eating = 0;
+	pthread_mutex_unlock(&philo->last_meal_mut);
 	philo->eaten++;
 	return (0);
 }
@@ -224,6 +208,9 @@ int	main(int ac, char **av)
 	pthread_create(&monitoring, NULL, ft_monitoring, philos);
 	start_routine(philos);
 	join_philos(philos);
+	pthread_join(monitoring, NULL);
+	free(all);
+	free(philos);
 	return (0);
 }
 

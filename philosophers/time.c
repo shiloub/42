@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:00:09 by shiloub           #+#    #+#             */
-/*   Updated: 2022/06/28 14:05:10 by shiloub          ###   ########.fr       */
+/*   Updated: 2022/09/06 16:34:01 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ unsigned long	get_actual_time(void)
 
 int	do_i_die(t_philo *philo)
 {
-	if (g_t(philo) - philo->last_meal > philo->all->die)
+	//pthread_mutex_lock(&philo->last_meal_mut);
+	//pthread_mutex_unlock(&philo->last_meal_mut);
+	if (g_t(philo) - philo->last_meal > philo->all->die) // rajouter mutexs
 		return (1);
 	return (0);
 }
