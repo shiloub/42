@@ -99,6 +99,9 @@ int	drop_forks(t_philo *philo)
 
 int	eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->last_meal_mut);
+	philo->last_meal = g_t(philo);
+	pthread_mutex_unlock(&philo->last_meal_mut);
 	pthread_mutex_lock(&philo->all->print);
 	pthread_mutex_lock(&philo->all->is_dead);
 	if (philo->all->dead == 1)
@@ -116,9 +119,6 @@ int	eat(t_philo *philo)
 	printf("%ld %d is eating\n", g_t(philo), philo->index);
 	pthread_mutex_unlock(&philo->all->print);
 	my_usleep(philo->all->eat * 1000, philo);
-	pthread_mutex_lock(&philo->last_meal_mut);
-	philo->last_meal = g_t(philo);
-	pthread_mutex_unlock(&philo->last_meal_mut);
 	philo->eaten++;
 	return (0);
 }
