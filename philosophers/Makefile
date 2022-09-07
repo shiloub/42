@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-CFLAGS = -pthread -Wall -Wextra -Werror
+CFLAGS = -pthread -Wall -Wextra -Werror #-g -fsanitize=thread
 SRC = main.c \
 		parse.c \
 		ft_atoi.c \

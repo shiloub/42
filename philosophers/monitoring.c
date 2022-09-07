@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:00:57 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/07 18:48:02 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:05:40 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	die(t_philo *philos, int i)
 		philos->all->dead = 1;
 		pthread_mutex_unlock(&philos->all->is_dead);
 		pthread_mutex_lock(&philos->all->print);
-		printf("%ld %d died", g_t(philos), i + 1);
-		printf("cuz last meal was %ld\n", philos[i].last_meal);
+		printf("%ld %d died\n", g_t(philos), i + 1);
 		pthread_mutex_unlock(&philos->all->print);
 		return (1);
 	}
