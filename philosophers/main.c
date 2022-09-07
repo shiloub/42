@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:44:58 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/07 18:46:36 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:22:35 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 	start_routine(philos);
 	join_philos(philos);
 	pthread_join(monitoring, NULL);
+	free(all->forks);
 	free(all);
 	free(philos);
 	return (0);
