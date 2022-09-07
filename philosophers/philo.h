@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:37:17 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/06 17:25:42 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:04:14 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_all
 
 typedef struct	s_philo
 {
+	int			all_eat;
 	int			index;
 	t_all		*all;
 	int			is_eating;
@@ -58,6 +59,7 @@ void	join_philos(t_philo *philos);
 void	start_routine(t_philo *philos);
 unsigned long	g_t(t_philo *philo);
 int	do_i_die(t_philo *philo);
+void	ft_monitoring_real(t_philo *philos);
 
 
 #endif

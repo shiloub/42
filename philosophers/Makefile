@@ -5,6 +5,8 @@ SRC = main.c \
 		parse.c \
 		ft_atoi.c \
 		time.c \
+		monitoring.c \
+		
 
 
 OBJ = $(SRC:.c=.o)

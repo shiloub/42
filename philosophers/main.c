@@ -54,41 +54,6 @@ int	take_forks(t_philo *philo)
 	return (0);
 }
 
-void	ft_monitoring_real(t_philo *philos)
-{
-	int	i;
-	int	count;
-
-	count = 0;
-	while (1)
-	{
-		i = 0;
-		while (i < philos[0].all->nb_philo)
-		{
-			pthread_mutex_lock(&philos[i].last_meal_mut);
-			if (do_i_die(&philos[i]) == 1)
-			{
-				pthread_mutex_unlock(&philos[i].last_meal_mut);
-				pthread_mutex_lock(&philos->all->is_dead);
-				philos->all->dead = 1;
-				pthread_mutex_unlock(&philos->all->is_dead);
-				pthread_mutex_lock(&philos->all->print);
-				printf("%ld %d died cuz last meal was %ld\n", g_t(philos), i + 1, philos[i].last_meal);
-				pthread_mutex_unlock(&philos->all->print);
-				return ;
-			}
-			pthread_mutex_unlock(&philos[i].last_meal_mut);
-			pthread_mutex_lock(&philos[i].eaten_mut);
-			if (philos[i].eaten == philos[i].all->nb_eat)
-				count++;
-			pthread_mutex_unlock(&philos[i].eaten_mut);
-			if (count == philos[i].all->nb_philo)
-				return ;
-			i++;
-		}
-	}
-}
-
 void	*ft_monitoring(void *arg)
 {
 	ft_monitoring_real(arg);
@@ -101,6 +66,7 @@ int	drop_forks(t_philo *philo)
 		pthread_mutex_unlock(&philo->all->forks[0]);
 	else
 		pthread_mutex_unlock(&philo->all->forks[philo->index]);
+	usleep(5);
 	pthread_mutex_unlock(&philo->all->forks[philo->index - 1]);
 	return (0);
 }
@@ -163,6 +129,12 @@ int	go_to_bed(t_philo *philo)
 
 void	routine_real(t_philo *philo)
 {
+	if (philo->all->nb_philo == 1)
+	{
+		printf("%ld %d has taken a fork %d\n", g_t(philo), philo->index, philo->index - 1);
+		my_usleep(philo->all->die * 2000, philo);
+		return ;
+	}
 	while (1)
 	{
 		if (take_forks(philo) == 1)
@@ -173,14 +145,6 @@ void	routine_real(t_philo *philo)
 			break;
 		if (go_to_bed(philo) == 1)
 			break;
-		pthread_mutex_lock(&philo->eaten_mut);
-		if (philo->eaten == philo->all->nb_eat)
-		{
-			pthread_mutex_unlock(&philo->eaten_mut);
-			break;
-		}
-		pthread_mutex_unlock(&philo->eaten_mut);
-		
 	}
 }
 

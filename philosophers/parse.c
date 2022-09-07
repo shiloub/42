@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:19:13 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/06 17:29:39 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:20:25 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_philo	*parsing(t_all *all, int ac, char **av)
 	{
 		philos[i].index = i + 1;
 		philos[i].all = all;
+		philos[i].all_eat = 0;
 		philos[i].eaten = 0;
 		philos[i].is_eating = 0;
 		philos[i].last_meal = 0;

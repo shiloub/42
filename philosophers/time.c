@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:00:09 by shiloub           #+#    #+#             */
-/*   Updated: 2022/09/06 17:41:40 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:35:08 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ unsigned long	get_actual_time(void)
 
 int	do_i_die(t_philo *philo)
 {
-	//pthread_mutex_lock(&philo->last_meal_mut);
-	//pthread_mutex_unlock(&philo->last_meal_mut);
 	if (g_t(philo) - philo->last_meal > philo->all->die) // rajouter mutexs
 		return (1);
 	return (0);
@@ -50,7 +48,7 @@ void	my_usleep(unsigned long usec, t_philo *philo)
 	time_actual = time_start;
 	while(time_actual < time_start + usec)
 	{
-		usleep(10);
+		usleep(500);
 		gettimeofday(&time, NULL);
 		time_actual = (time.tv_sec * 1000000) + (time.tv_usec);
 		if (philo != NULL)
