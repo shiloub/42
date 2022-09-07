@@ -6,7 +6,7 @@
 /*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:19:13 by amontant          #+#    #+#             */
-/*   Updated: 2022/09/07 15:20:25 by amontant         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:47:12 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	check_arg(int ac, char **av)
 {
 	int	i;
+
 	i = 1;
-	
 	if (ac < 5 || ac > 6)
 	{
 		printf("wrong number of arguments\n");
-		exit(0);  
+		exit (0);
 	}
 	while (i < ac)
 	{
@@ -48,23 +48,33 @@ int	check_numbers(char *number)
 	return (1);
 }
 
-t_philo	*parsing(t_all *all, int ac, char **av)
+int	parse_args(t_all *all, int ac, char **av)
 {
-	int	i;
-	t_philo *philos;
-	
 	all->nb_eat = -1;
-	i = 0;
-	if (check_arg(ac, av) == 0)
-        printf("args are valid\n");
-	else
-		return (0);
+	if (check_arg(ac, av) != 0)
+		return (1);
 	all->nb_philo = ft_atoi(av[1]);
 	all->die = ft_atoi(av[2]);
 	all->eat = ft_atoi(av[3]);
 	all->sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		all->nb_eat = ft_atoi(av[5]);
+	if (all->nb_philo == 0 || all->die <= 0 || all->eat <= 0 || \
+		all->sleep <= 0 || all->nb_eat <= 0)
+		return (1);
+	return (0);
+}
+
+t_philo	*parsing(t_all *all, int ac, char **av)
+{
+	int		i;
+	t_philo	*philos;
+
+	if (parse_args(all, ac, av) == 1)
+		return (0);
+	i = 0;
 	philos = malloc(sizeof(t_philo) * all->nb_philo);
-	while (i < all->nb_philo)
+	while (i < (int)all->nb_philo)
 	{
 		philos[i].index = i + 1;
 		philos[i].all = all;
@@ -77,7 +87,5 @@ t_philo	*parsing(t_all *all, int ac, char **av)
 		pthread_mutex_init(&philos[i].eaten_mut, NULL);
 		i++;
 	}
-	if (ac == 6)
-		all->nb_eat = ft_atoi(av[5]);
 	return (philos);
 }

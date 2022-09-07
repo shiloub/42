@@ -1,12 +1,14 @@
 NAME = philo
 CC = gcc
-CFLAGS = -pthread #-g -fsanitize=thread #-Wall -Wextra -Werror
+CFLAGS = -pthread -Wall -Wextra -Werror
 SRC = main.c \
 		parse.c \
 		ft_atoi.c \
 		time.c \
 		monitoring.c \
-		
+		take_forks.c \
+		eat_n_sleep.c \
+		routine.c \
 
 
 OBJ = $(SRC:.c=.o)
