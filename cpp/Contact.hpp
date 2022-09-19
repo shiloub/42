@@ -2,6 +2,7 @@
 #define CONTACT_HPP
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 class Contact
 {
@@ -10,6 +11,8 @@ class Contact
 		Contact(int ind, std::string first, std::string last, std::string nick, std::string phone, std::string secret);
 		void	print_infos(void);
 		int		gindex(void);
+		void	print_line(void);
+		void	take_info(std::string info, std::string witch, int ind);
     private:
     	int	index;
     	std::string first_name;
