@@ -29,21 +29,35 @@ void	PhoneBook::command_add()
 {
 	std::string	entries[5];
 
+	ici:
 	std::cout << "first name : ";
-	std::getline(std::cin, entries[0]);
-	// if (entries[0].size() == 0)
-	// 	exit (0);
-	std::cout << "last name : ";
-	std::getline(std::cin, entries[1]);
-	// if (entries[1].size() == 0)
-	// 	exit (0);
-	std::cout << "nickname : ";
-	std::getline(std::cin, entries[2]);
-	std::cout << "phone number : ";
-	std::getline(std::cin, entries[3]);
-	std::cout << "darkest secret : ";
-	std::getline(std::cin, entries[4]);
-	i++;
+	if (std::getline(std::cin, entries[0]))
+		std::cout << "last name : ";
+	else
+		exit (0);
+	if (std::getline(std::cin, entries[1]))
+		std::cout << "nickname : ";
+	else
+		exit (0);
+	if (std::getline(std::cin, entries[2]))
+		std::cout << "phone number : ";
+	else
+		exit (0);
+	here:
+	if (std::getline(std::cin, entries[3]))
+		std::cout << "darkest secret : ";
+	else
+		exit (0);
+	if (std::getline(std::cin, entries[4]))
+		i++;
+	else
+		exit (0);
+	if (entries[0].size() == 0 || entries[1].size() == 0 || entries[2].size() == 0 || entries[3].size() == 0 || entries[4].size() == 0)
+	{
+		std::cout << "ERROR : AT LEAST ONE OF THE FIELDS IS EMPTY: CONTACT CANT BE REGISTRED\n";
+		i--;
+		goto ici;
+	}
 	add_contact(i, entries[0], entries[1], entries[2], entries[3], entries[4]);
 
 }
@@ -57,17 +71,32 @@ void	PhoneBook::command_search(void)
 			registred[i].print_line();
 		i++;
 	}
+	if (registred[0].gindex() == 0)
+	{
+		std::cout << "NO EXISTING CONTACT\n";
+		return ;
+	}
+	ici:
 	i = 0;
 	while (i <= 0 || i >= 9)
 	{
 		std::string buff;
 		std::cout << "PLEASE ENTER A CONTACT INDEX : ";
-		std::getline(std::cin, buff);
+		if (std::getline(std::cin, buff))
+			i = i;
+		else
+			exit (0);
 		i = std::stoi(buff);
 		if (i >= 1 && i <= 8 && registred[i - 1].gindex() != 0)
 		{
 			registred[i - 1].print_infos();
 			break ;
+		}
+		else
+		{
+			std::cout << "INDEX NOT VALID\n";
+			goto ici;
+
 		}
 	}
 }

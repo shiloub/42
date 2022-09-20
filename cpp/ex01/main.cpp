@@ -11,7 +11,8 @@ int main()
 		std::getline(std::cin, command);
 		if (command.size() == 0)
 			exit (0);
-		std::transform(command.begin(), command.end(), command.begin(), toupper);
+		for (int i = 0; i < command.size(); i++)
+			command[i] = toupper(command[i]);
 		if (!command.compare("HELP"))
 			std::cout << "ADD to add a contact, SEARCH to list existing contacts, EXIT to exit(i guess)\n";
 		if (!command.compare("ADD"))
