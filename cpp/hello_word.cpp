@@ -1,10 +1,11 @@
 #include <iostream>
-//#include <algorithm>
+#include <cctype>
 #include <string>
 
 int main(int ac, char **av)
 {
 	int i (1);
+	int j(0);
 
 	if (ac <= 1)
 	{
@@ -14,7 +15,11 @@ int main(int ac, char **av)
 	while (ac > i)
 	{
 		std::string s = av[i++];
-		std::transform(s.begin(), s.end(), s.begin(), toupper);
+		while (j < s.size())
+		{
+			s[j] = toupper(s[j]);
+			j++;
+		}
 		std::cout << s;
 		if (ac <= i)
 			std::cout << std::endl;
