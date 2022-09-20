@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm>
+//#include <algorithm>
 #include <string>
 
 int main(int ac, char **av)
