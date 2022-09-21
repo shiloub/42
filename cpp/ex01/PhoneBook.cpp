@@ -43,7 +43,6 @@ void	PhoneBook::command_add()
 		std::cout << "phone number : ";
 	else
 		exit (0);
-	here:
 	if (std::getline(std::cin, entries[3]))
 		std::cout << "darkest secret : ";
 	else
