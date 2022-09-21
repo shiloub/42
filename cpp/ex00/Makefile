@@ -1,9 +1,7 @@
-NAME = repertory
+NAME = megaphone
 CC = c++
 CF = -Wall -Wextra -Werror -std=c++98
-SRC = PhoneBook.cpp \
-		Contact.cpp \
-		main.cpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

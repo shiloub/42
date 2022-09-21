@@ -34,7 +34,7 @@ void	PhoneBook::command_add()
 	if (std::getline(std::cin, entries[0]))
 		std::cout << "last name : ";
 	else
-		exit (0);
+		exit(0);
 	if (std::getline(std::cin, entries[1]))
 		std::cout << "nickname : ";
 	else
@@ -85,7 +85,7 @@ void	PhoneBook::command_search(void)
 			i = i;
 		else
 			exit (0);
-		i = std::stoi(buff);
+		i = atoi(buff.c_str());
 		if (i >= 1 && i <= 8 && registred[i - 1].gindex() != 0)
 		{
 			registred[i - 1].print_infos();

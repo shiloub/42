@@ -8,11 +8,13 @@ int main()
 	while (1)
 	{   
 		std::cout << "PLEASE ENTER A COMMAND (HELP if you need some)\n";
-		std::getline(std::cin, command);
-		if (command.size() == 0)
-			exit (0);
-		for (unsigned int i = 0; i < command.size(); i++)
-			command[i] = toupper(command[i]);
+		if (std::getline(std::cin, command))
+		{
+			for (unsigned int i = 0; i < command.size(); i++)
+				command[i] = toupper(command[i]);
+		}
+		else
+			_Exit (0);
 		if (!command.compare("HELP"))
 			std::cout << "ADD to add a contact, SEARCH to list existing contacts, EXIT to exit(i guess)\n";
 		if (!command.compare("ADD"))
