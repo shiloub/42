@@ -16,9 +16,7 @@ Fixed::Fixed(const int raw)
 Fixed::Fixed(const float raw)
 {
 	std::cout << "Float constructor called\n";
-	this->_number = (int)(/*roundf*/(raw * (1 << this->_v)));
-	std::cout << this->_number << std::endl;
-	// this->_number = raw * (1 << 8);
+	this->_number = (int)(roundf(raw * (1 << this->_v)));
 }
 
 Fixed::Fixed(const Fixed &fixed)
@@ -34,18 +32,12 @@ Fixed	&Fixed::operator=(const Fixed &fixed)
 	return (*this);
 }
 
-std::ostream &operator << ( std::ostream &st ,const Fixed &fixed )
+std::ostream &operator << ( std::ostream &st ,const Fixed &rhs )
 {
-	float f = fixed.toFloat();
+	float f = rhs.toFloat();
 	st << f;
 	return (st);
 }
-
-// std::ostream &operator<<(std::ostream &out, const Fixed &fixe)
-// {
-//     out << fixe.toFloat();
-//     return (out);
-// }
 
 
 float	Fixed::toFloat(void) const

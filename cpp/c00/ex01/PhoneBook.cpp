@@ -82,7 +82,7 @@ void	PhoneBook::command_search(void)
 		std::string buff;
 		std::cout << "PLEASE ENTER A CONTACT INDEX : ";
 		if (std::getline(std::cin, buff))
-			i = i;
+			;
 		else
 			exit (0);
 		i = atoi(buff.c_str());

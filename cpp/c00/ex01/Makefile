@@ -1,6 +1,6 @@
 NAME = repertory
-CC = c++
-CF = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = PhoneBook.cpp \
 		Contact.cpp \
 		main.cpp
@@ -9,10 +9,10 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CF) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-%.o : %.cpp
-	$(CC) $(CF) -o $@ -c $^
+#%.o : %.cpp
+#	$(CC) $(CF) -o $@ -c $^
 
 clean :
 	rm -f $(OBJ)
@@ -20,6 +20,7 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-re : fclean all
+re : fclean 
+		make all
 
 

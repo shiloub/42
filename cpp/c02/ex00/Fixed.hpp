@@ -7,7 +7,7 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed &fixed);
-		Fixed &operator=(const Fixed &new_fixed);
+		Fixed &operator=(const Fixed &rhs);
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 		~Fixed();
