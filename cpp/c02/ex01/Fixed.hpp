@@ -10,8 +10,10 @@ class Fixed
 		Fixed(const float raw);
 		Fixed(const Fixed &fixed);
 		Fixed &operator=(const Fixed &new_fixed);
-		int getRawBits( void ) const;
-		void setRawBits( int const raw );
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
+		float	toFloat(void) const;
+		int		toInt(void) const;
 		~Fixed();
 
 
@@ -19,4 +21,5 @@ class Fixed
 		int	_number;
 		static const int _v = 8;
 };
+		std::ostream &operator << ( std::ostream &st, const Fixed &fixed);
 #endif

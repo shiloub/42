@@ -27,11 +27,8 @@ float puissance(int x, int y)
 }
 int main()
 {
-    int i;
+    float a = 96,24;
 
-    i = 192;
-    int save = i;
-    int ret = 0;
-
-    std::cout << puissance(2, -5) << std::endl;
+    int b = a * 1 << 8;
+    std::cout <<  << std::endl;
 }
