@@ -1,7 +1,9 @@
-NAME = megaphone
+NAME = horde
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC =	main.cpp
+SRC = Zombie.cpp \
+		ZombieHorde.cpp \
+		main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
