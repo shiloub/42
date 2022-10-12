@@ -2,6 +2,7 @@
 
 ClapTrap::ClapTrap() : _hit_points(10), _energy_point(10), _attack_damage(0)
 {
+	_hit_points = 10;
 	std::cout << "Default constructor called\n";
 }
 
@@ -70,7 +71,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << this->_name << " can't rest\n";
 		return ;
 	}
-	std::cout << this->_name << " is resting\n";
+	std::cout << this->_name << "is resting\n";
 	this->_hit_points += amount;
 }
 

@@ -25,13 +25,5 @@ int main()
 			break ;
 		
 	}
-	//std::cout << std::setfill(' ') << std::setw(10) << "abcdefghijklmnopqrstuvwxyz" << "|" << "salut";
-	// book.command_add();
-	// book.command_add();
-	// book.command_add();
-	// book.print_contact(1);
-	// book.print_contact(2);
-	// book.print_contact(3);
-
 	return (0);
 }
