@@ -1,7 +1,9 @@
-NAME = claptrap
+NAME = flagtrap
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC =ClapTrap.cpp \
+		ScavTrap.cpp \
+		FlagTrap.cpp \
 		main.cpp
 OBJ = $(SRC:.cpp=.o)
 
