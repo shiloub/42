@@ -12,6 +12,11 @@ Fixed::Fixed(const Fixed &fixed)
 	*this = fixed;
 }
 
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called\n";
+}
+
 Fixed	&Fixed::operator=(const Fixed &rhs)
 {
 	std::cout << "Copy assignment operator called\n";
@@ -28,9 +33,4 @@ int Fixed::getRawBits( void ) const
 void Fixed::setRawBits( int const raw )
 {
 	this->_number = raw;
-}
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called\n";
 }
