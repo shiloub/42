@@ -22,9 +22,9 @@ int main(int ac, char **av)
 	std::string order;
 	Harl harl;
 
-	if (ac == 1)
+	if (ac != 2)
 	{
-		std::cout << "I have nothing to say :(\n";
+		std::cout << "I am confused :(\n";
 		return (0);
 	}
 	if (ac == 2)

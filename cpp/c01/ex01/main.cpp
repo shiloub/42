@@ -12,6 +12,7 @@ int main()
     horde[3].announce();
     horde[3].give_name("martine");
     horde[3].announce();
+    horde[2].announce();
     delete[] horde;
 
     return 0;
