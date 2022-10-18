@@ -4,23 +4,27 @@
 int main()
 {
 	ScavTrap tomtom("tom");
-	ScavTrap nana(tomtom);
+	ScavTrap nana("nana");
+	ScavTrap titi(nana);
 
-	std::cout << "tom name = " << tomtom.get_name() << std::endl;
-	std::cout << "nana attack damages = " << nana.get_attack_damage() << std::endl;
-	nana.set_attack_damage(42);
-	std::cout << "nana attack damages = " << nana.get_attack_damage() << std::endl;
-	// ScavTrap nana("nana");
+	titi.attack("boubi");
+	std::cout << tomtom.get_name() << std::endl;
+	std::cout << tomtom.get_hit_point() << std::endl;
+	std::cout << tomtom.get_energy_point() << std::endl;
+	std::cout << tomtom.get_attack_damage() << std::endl;
 
-	// nana.beRepaired(1);
-	// for (int i = 0; i< 10; i++)
-	// {
-	// 	tomtom.attack("nana");
-	// 	nana.takeDamage(1);
-	// }
-	// tomtom.attack("nana");
-	// nana.takeDamage(1);
-	// nana.beRepaired(1);
-	// tomtom.takeDamage(120);
-	// tomtom.beRepaired(1000);
+	nana.beRepaired(1);
+	for (int i = 0; i < 10; i++)
+	{
+		tomtom.attack("nana");
+		nana.takeDamage(1);
+	}
+	tomtom.attack("nana");
+	nana.takeDamage(1);
+	nana.beRepaired(1);
+	tomtom.guardGate();
+	tomtom.takeDamage(99);
+	tomtom.takeDamage(20);
+	tomtom.guardGate();
+	tomtom.beRepaired(1000);
 }

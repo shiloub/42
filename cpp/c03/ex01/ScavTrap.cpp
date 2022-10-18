@@ -57,5 +57,10 @@ void	ScavTrap::attack(const std::string& target)
 
 void ScavTrap::guardGate()
 {
-	std::cout << "Je suis rentré en mode gage keeper\n";
+	if (this->get_hit_point() == 0)
+	{
+		std::cout << this->get_name() << " is dead\n";
+		return ;
+	}
+	std::cout << "Je suis rentré en mode gate keeper\n";
 }

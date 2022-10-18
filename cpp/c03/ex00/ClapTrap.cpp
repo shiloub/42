@@ -2,6 +2,7 @@
 
 ClapTrap::ClapTrap() : _hit_points(10), _energy_point(10), _attack_damage(0)
 {
+	_name = "random";
 	std::cout << "Default constructor called\n";
 }
 
@@ -10,14 +11,20 @@ ClapTrap::ClapTrap(std::string name) : _hit_points(10), _energy_point(10), _atta
 	std::cout << "Initialisation constructor called\n";
 }
 
-ClapTrap	&ClapTrap::operator=(ClapTrap &rhs)
+
+ClapTrap	&ClapTrap::operator=(const ClapTrap &rhs)
 {
-	std::cout << "Copy constructor called\n";
 	this->_name = rhs._name;
 	this->_attack_damage = rhs._attack_damage;
 	this->_energy_point = rhs._energy_point;
 	this->_hit_points = rhs._hit_points;
 	return (*this);
+}
+
+ClapTrap::ClapTrap(const ClapTrap &claptrap)
+{
+	std::cout << "Copy constructor called\n";
+	*this = claptrap;
 }
 
 ClapTrap::~ClapTrap()
@@ -73,4 +80,3 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout << this->_name << " is resting\n";
 	this->_hit_points += amount;
 }
-

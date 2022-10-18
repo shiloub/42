@@ -12,5 +12,4 @@ class ScavTrap : public ClapTrap
 		void guardGate();
 
 	private :
-		std::string _oui;
 };

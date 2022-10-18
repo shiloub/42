@@ -8,7 +8,7 @@ class FlagTrap : public ClapTrap
 		FlagTrap(const FlagTrap &flagtrap);
 		~FlagTrap();
 		FlagTrap &operator=(const FlagTrap &rhs);
-		void highFivesGuy();
+		void highFivesGuys();
 
 	private :
 };

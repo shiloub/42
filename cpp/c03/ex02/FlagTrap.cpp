@@ -38,7 +38,12 @@ FlagTrap	&FlagTrap::operator=(const FlagTrap &rhs)
 	return (*this);
 }
 
-void FlagTrap::highFivesGuy()
+void FlagTrap::highFivesGuys()
 {
+	if (this->_hit_points == 0)
+	{
+		std::cout << this->_name << " is dead\n";
+		return;
+	}
 	std::cout << "High five ! (Please)\n";
 }

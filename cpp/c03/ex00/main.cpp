@@ -4,9 +4,11 @@ int main()
 {
 	ClapTrap tomtom("tom");
 	ClapTrap nana("nana");
+	ClapTrap titi(nana);
 
+	titi.attack("boubi");
 	nana.beRepaired(1);
-	for (int i = 0; i< 10; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		tomtom.attack("nana");
 		nana.takeDamage(1);

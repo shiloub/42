@@ -5,7 +5,7 @@
 
 class	ClapTrap
 {
-	private :
+	protected :
 		unsigned int	_hit_points;
 		unsigned int	_energy_point;
 		unsigned int	_attack_damage;
