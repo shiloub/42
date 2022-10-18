@@ -52,6 +52,11 @@ Fixed	Fixed::operator*(const Fixed &rhs) const
 
 Fixed	Fixed::operator/(const Fixed &rhs) const
 {
+	if (rhs.getRawBits() == 0)
+	{
+		std::cout << "ERROR division by 0 is undefined\n";
+		exit(0);
+	}
 	Fixed f(this->toFloat() / rhs.toFloat());
 	return (f);
 }
