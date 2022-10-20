@@ -20,7 +20,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal &WrongAnimal)
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "WrongAnimal default destructor called\n";
+	std::cout << "WrongAnimal destructor called\n";
 }
 
 void	WrongAnimal::makeSound() const

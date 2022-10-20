@@ -7,7 +7,7 @@ Cat::Cat()
     std::cout << "Cat constructor default called\n";
 }
 
-Cat::Cat(const Cat &cat)
+Cat::Cat(const Cat &cat) : Animal()
 {
     this->_brain = new Brain();
     *this = cat;

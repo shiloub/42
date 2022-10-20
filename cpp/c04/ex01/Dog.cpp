@@ -7,7 +7,7 @@ Dog::Dog()
     std::cout << "Dog constructor default called\n";
 }
 
-Dog::Dog(const Dog &Dog)
+Dog::Dog(const Dog &Dog) : Animal()
 {
     this->_brain = new Brain();
     *this = Dog;

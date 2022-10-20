@@ -14,7 +14,7 @@ class Animal
 		std::string	getType() const;
 
 
-	private :
+	protected :
 		std::string type;
 };
 

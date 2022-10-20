@@ -18,11 +18,8 @@ int main()
 	delete i;
 	delete j;
 
-	const WrongAnimal* wrong = new WrongAnimal();
-	const WrongAnimal* wrong_cat = new WrongCat();
-	std::cout << wrong_cat->getType() << " " << std::endl;
-	wrong_cat->makeSound();
-	wrong->makeSound();
-	delete wrong;
-	delete wrong_cat;
+	const WrongAnimal* test = new WrongCat();
+	std::cout << test->getType() << " " << std::endl;
+	test->makeSound();
+	delete test;
 }
