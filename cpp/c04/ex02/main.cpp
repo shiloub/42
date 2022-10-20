@@ -36,8 +36,6 @@ int main()
 	copy = cat;
 	std::cout << copy.get_idea(30) << std::endl;  // en copiant cat , l idee 30 de copy change
 
-
-	Animal test;
-	test.makeSound();
+	//Animal bug;
 }
 
