@@ -8,7 +8,6 @@ class RobotomyRequestForm : public Form
     private : 
         std::string _target;
         RobotomyRequestForm();
-        int _count;
 
     public :
         RobotomyRequestForm(std::string target);

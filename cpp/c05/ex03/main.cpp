@@ -14,6 +14,10 @@ int main()
 	
 	Intern someRandomIntern;
 	Form* form;
+	RobotomyRequestForm test("test");
+	RobotomyRequestForm cpy(test);
+	std::cout << cpy << std::endl;
+	std::cout << "--------------------\n";
 	form = someRandomIntern.makeForm("shrubbery creation", "Bender");
 
 	if (form == NULL)
@@ -34,6 +38,8 @@ int main()
 	Form *robot;
 	Form *pardon;
 	Intern stagiaire;
+	Form *rate;
+	rate = stagiaire.makeForm("error", "random"); // erreur : error n est pas un nom de form
 	robot = stagiaire.makeForm("robotomy request", "caillou");
 	pardon = stagiaire.makeForm("presidential pardon", "xavier dupont de ligonnes");
 	Bureaucrat boss("guy martin", 1); // plus haut grade il a tout les droits

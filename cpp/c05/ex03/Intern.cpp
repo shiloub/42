@@ -51,7 +51,6 @@ Form *Intern::makeForm(std::string name, std::string target)
 
 	for (int i = 0; i < 3; i++)
 	{
-		std::cout << name << " : " << tab[i] << std::endl;
 		if (tab[i] == name)
 		{
 			return (((*this).*(array[i]))(target)); // synthaxe d'appel: (object).*(ptrToFunction) (arguments)

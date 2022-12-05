@@ -12,7 +12,7 @@ Form::Form(std::string name, int to_sign, int to_exec): _name(name), _signed(0),
 
 Form::~Form(){}
 
-Form::Form(const Form &cpy) : _name(cpy._name), _signed(0), _to_sign(cpy._to_sign), _to_exec(cpy._to_exec){}
+Form::Form(const Form &cpy) : _name(cpy._name), _signed(cpy._signed), _to_sign(cpy._to_sign), _to_exec(cpy._to_exec){}
 
 Form &Form::operator=(const Form &rhs)
 {
@@ -25,7 +25,7 @@ Form &Form::operator=(const Form &rhs)
 std::ostream &operator<<(std::ostream &out, const Form &rhs)
 {
 
-	out << "Formulaire" << rhs.getName() << " can be signed from " << rhs.getToSign() << " and be exec from " << rhs.getToExec() << ".";
+	out << "Formulaire " << rhs.getName() << " can be signed from " << rhs.getToSign() << " and be exec from " << rhs.getToExec() << ".";
 	if (rhs.getSigned() == 1)
 		out << " Already signed";
 	else

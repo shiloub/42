@@ -7,7 +7,7 @@ class Form
 {
 	private :
 		std::string const	_name;
-		int					_signed;
+		bool					_signed;
 		const int					_to_sign;
 		const int					_to_exec;
 		Form();
