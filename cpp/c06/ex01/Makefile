@@ -1,7 +1,8 @@
-NAME = convert
+NAME = deserielize
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
+	deserialize.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

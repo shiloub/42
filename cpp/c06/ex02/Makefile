@@ -1,7 +1,9 @@
-NAME = convert
+NAME = random
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
+	Base.cpp \
+	function.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

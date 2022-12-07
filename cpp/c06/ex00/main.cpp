@@ -20,11 +20,10 @@ int is_int(char *str)
 
 int is_float(char *str)
 {
-	float f;
 	char *endptr;
 
-	f = strtof(str, &endptr);
-	if (*endptr == 'f' && str[0] != 'f' && *(endptr + 1) == 0 && *(endptr - 1) >= '0' && *(endptr - 1) <= '9')
+	strtof(str, &endptr);
+	if (*endptr == 'f' && str[0] != 'f' && *(endptr + 1) == 0 /*&& *(endptr - 1) >= '0' && *(endptr - 1) <= '9'*/)
 	{
 		return (1);
 	}
@@ -43,10 +42,9 @@ int	is_char(char *str)
 
 int	is_double(char *str)
 {
-	double d;
 	char *endptr;
 
-	d = strtod(str, &endptr);
+	strtod(str, &endptr);
 	if (*endptr == 0 && str[0] != 0)
 	{
 		return (1);
@@ -125,7 +123,8 @@ int main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		std::cout << "error : bad parameters\n";
+		std::cout << "Usage : ./convert \"argument\"\n";
+		return (0);
 	}
 	char *str = av[ac -1];
 	if (is_int(str))
