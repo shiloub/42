@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:04:46 by shiloub           #+#    #+#             */
-/*   Updated: 2023/01/29 22:20:13 by shiloub          ###   ########.fr       */
+/*   Updated: 2023/02/02 00:43:09 by amontant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	set_infos(t_info *infos)
 	infos->west_path = NULL;
 	infos->ground.r = -1;
 	infos->sky.r = -1;
+}
+int	check_all_elems(t_info *infos)
+{
+	if (!infos->east_path || !infos->west_path || !infos->north_path
+		|| !infos->south_path || infos->ground.r == -1 || infos->sky.r == -1)
+		return(0);
+	return (1);
 }
 int main(int ac, char **av)
 {
@@ -49,8 +56,28 @@ int main(int ac, char **av)
 		free_infos(infos);
 		return (0);
 	}
-	// replace_spaces(infos->pure_map);
-	// set_spaces(infos->pure_map);
-	// check_map(infos->pure_map);
-	// free_infos(infos);
+	if (!check_all_elems(infos))
+	{
+		free_infos(infos);
+		printf("textures or colors r missing\n");
+		return (0);
+	}
+	
+	
+	printf("%s\n", infos->north_path);
+	printf("%s\n", infos->south_path);
+	printf("%s\n", infos->west_path);
+	printf("%s\n", infos->east_path);
+	printf("sky : %d,%d,%d\n", infos->sky.r, infos->sky.g, infos->sky.b);
+	printf("ground : %d,%d,%d\n", infos->ground.r, infos->ground.g, infos->ground.b);
+	printf("-------------------------------\n");
+
+	
+	replace_spaces(infos->pure_map);
+	set_spaces(infos->pure_map);
+	printf("-------------------------------\n");
+	check_map(infos->pure_map);
+	printf("-------------------------------\n");
+	print_tab(infos->pure_map);
+	free_infos(infos);
 }
