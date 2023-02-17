@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amontant <amontant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shiloub <shiloub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:04:46 by shiloub           #+#    #+#             */
-/*   Updated: 2023/02/02 00:43:09 by amontant         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:03:52 by shiloub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ int main(int ac, char **av)
 	{
 		free_tab(map);
 		free_infos(infos);
+		printf("error");
 		return (0);
+		
 	}
 	if (!check_all_elems(infos))
 	{
