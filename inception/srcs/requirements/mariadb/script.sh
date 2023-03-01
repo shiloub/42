@@ -2,6 +2,8 @@
 
 #mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql
 
+# sleep 20;
+# exit;
 service mysql start
 # mysql_secure_installation << EOF
 # ${ADMIN_PASS}
