@@ -9,4 +9,4 @@ RUN mkdir /run/mysqld -p
 RUN chmod 777 /run/mysqld/
 RUN chown -R mysql:mysql /run/mysqld/
 CMD ["./script.sh"]
-# CMD ["tail", "-f", "/bin/bash"]
+#  CMD ["tail", "-f", "/bin/bash"]
