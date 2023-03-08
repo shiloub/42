@@ -19,6 +19,8 @@ CREATE DATABASE IF NOT EXISTS db_db ;
 FLUSH PRIVILEGES;
 CREATE USER IF NOT EXISTS "shiloub"@"wordpress.srcs_inception" IDENTIFIED BY "$MYSQL_DB_PASS";
 GRANT ALL PRIVILEGES ON db_db.* TO "shiloub"@"wordpress.srcs_inception" IDENTIFIED BY "$MYSQL_DB_PASS";
+ALTER USER 'root'@'localhost' IDENTIFIED BY "${ADMIN_PASS}";
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_DB_PASS');
 FLUSH PRIVILEGES;
 EOF
 sleep 3
