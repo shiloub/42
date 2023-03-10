@@ -17,6 +17,6 @@ COPY php-fpm.conf /etc/php/7.3/fpm/php-fpm.conf
 COPY config.sh /config.sh
 RUN chmod 777 config.sh
   # CMD ["tail", "-f", "/bin/bash"]
- CMD ["bash", "config.sh"]
+ENTRYPOINT ["bash", "config.sh"]
 
 # RUN mkdir /var/www/html
