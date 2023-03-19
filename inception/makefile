@@ -1,7 +1,7 @@
 
 start :
-	mkdir -p /home/amontant/data/wordpress
-	mkdir -p /home/amontant/data/mariadb
+	sudo mkdir -p /home/amontant/data/wordpress
+	sudo mkdir -p /home/amontant/data/mariadb
 	cd srcs && sudo docker-compose up --build -d
 
 stop :
