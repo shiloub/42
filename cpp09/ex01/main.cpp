@@ -79,7 +79,7 @@ int main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		std::cout << "Im waiting one argument\n";
+		std::cout << "Im waiting for one argument\n";
 		return (0);
 	}
 	std::string calcul = av[1];

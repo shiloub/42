@@ -1,8 +1,9 @@
-NAME = btc
+NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = parsing.cpp \
-		main.cpp
+SRC = main.cpp \
+		merge_sort.cpp \
+
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)

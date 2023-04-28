@@ -16,9 +16,9 @@ std::string get_date_pipe(std::string line)
 
 void	trim_spaces(std::string &date)
 {
-	while (date.back() == ' ')
-		date.pop_back();
-	while (date.front() == ' ')
+	while (date[date.size() - 1] == ' ')
+		date.erase(date.size() - 1);
+	while (date[0] == ' ')
 		date.erase(0, 1);
 }
 
@@ -43,6 +43,9 @@ int	check_date(std::string date)
 {
 	int count(0);
 	int i(0);
+	std::istringstream date_stream(date);
+	std::string value;
+
 
 	while (date[i])
 	{
@@ -52,10 +55,32 @@ int	check_date(std::string date)
 	}
 	if (count != 2)
 		throw (std::runtime_error("Bad input"));
+	i = 0;
+	while (std::getline(date_stream, value, '-')) {
+		if (i == 0) {
+			if (value.size() != 4)
+				throw (std::runtime_error("Year format isnt valid"));
+			if (atoi(value.c_str()) < 2000 || atoi(value.c_str()) >= 2023)
+				throw (std::runtime_error("Year isnt in range"));
+		}
+		if (i == 1) {
+			if (value.size() != 2)
+				throw (std::runtime_error("Month format isnt valid"));
+			if (atoi(value.c_str()) < 1 || atoi(value.c_str()) > 12)
+				throw (std::runtime_error("Month isnt in range"));
+		}
+		if (i == 2) {
+			if (value.size() != 2)
+				throw (std::runtime_error("Day format isnt valid"));
+			if (atoi(value.c_str()) < 1 || atoi(value.c_str()) > 31)
+				throw (std::runtime_error("Day isnt in range"));
+		}
+		i++;
+	}
 	return (1);
 }
 
-int	check_line(std::map<std::string, std::string> map, std::map<std::string, std::string>::const_iterator it, std::string date, std::string number)
+int	check_line(std::string number)
 {
 
 	if (number.length() > 5 || atoi(number.c_str()) > 1000)
@@ -67,14 +92,14 @@ int	check_line(std::map<std::string, std::string> map, std::map<std::string, std
 	return (1);
 }
 
-void    convert(std::map<std::string, std::string> map)
+void    convert(std::map<std::string, std::string> map, char *file)
 {
 	std::string line;
 	std::string date;
 	std::string number;
 	std::map<std::string, std::string>::const_iterator it;
 
-	std::ifstream flux("input.txt");
+	std::ifstream flux(file);
 	if (!flux)
 	{
 		std::cout << "impossible d'ouvrir le file input.txt\n";
@@ -91,7 +116,7 @@ void    convert(std::map<std::string, std::string> map)
 			it = map.upper_bound(date);
 		try
 		{
-			if (check_line(map, it, date, number) && date != "date" && check_date(date))
+			if (date != "date" && check_line(number) && check_date(date))
 				std::cout << date << " => " << number << " * " << it->second << " = " << strtof(number.c_str(), NULL) * strtof(it->second.c_str(), NULL) << std::endl;
 		}
 		catch(std::exception &e)
@@ -102,20 +127,14 @@ void    convert(std::map<std::string, std::string> map)
 }
 
 
-int main()
+int main(int ac, char **av)
 {
+	if (ac != 2)
+	{
+		std::cout << "Im waiting for one argument\n";
+		return (0);
+	}
+	
 	std::map<std::string , std::string> map = parsing();
-	convert(map);
-	// std::map<std::string, std::string>::const_iterator it;
-	// it = map.begin();
-	// while (it != map.end())
-	// {
-	//     std::cout << it->first << " / " << it->second << std::endl;
-	//     it++;
-	// }
-	// it = map.lower_bound("2022-03-30");
-	// if (it == map.begin() || it == map.end())
-	//     std::cout << "error : no lower bound" << std::endl;
-	// else
-	//     std::cout << it->first << " donne " << it->second << std::endl;
+	convert(map, av[1]);
 }
