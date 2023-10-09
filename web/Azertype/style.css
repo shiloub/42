@@ -1,0 +1,195 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    --color-primary: #f76c5e;
+    --color-secondary: #f68e5f;
+    --color-tertiary: #ffeee6;
+}
+header {
+    color :rgb(209, 80, 80);
+}
+h1 {
+    margin: 10px;
+    font-size: 60px;
+    font-weight: 900;
+    color: var(--color-primary);
+}
+
+h2 {
+    margin: 10px;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+h3 {
+    margin: 10px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-secondary);
+}
+
+.zoneProposition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    font-weight: 700;
+    font-size : 25px;
+    background-color: white;
+    border-radius: 10px;
+    color : var(--color-primary);
+    text-align: center;
+}
+
+.zoneSaisie {
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    width: 100%;
+    padding: 0;
+}
+.zoneSaisie *{
+    /* flex: 1; */
+    margin: 0;
+    /* height: 30px; */
+    border-radius: 10px;
+}
+.zoneScore {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+main {
+    display :flex;
+    flex-direction: column;
+    align-items: center;
+    margin :auto;
+    width: 50%;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 20px;
+    border-radius: 30px;
+    color : white;
+    background-color: var(--color-secondary);
+}
+main *{
+    margin: 10px;
+}
+#inputEcriture {
+    margin-right : 10px;
+    width: 80%;
+    border-color: transparent;
+
+}
+#btnValiderMot {
+    flex:1;
+}
+#btnPartager {
+    padding :10%;
+}
+button {
+    background-color: white;
+    color :#f68e5f;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    border-color: transparent;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#inputEcriture {
+    color: var(--color-primary);
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    background-color: var(--color-secondary);
+    top: 0;
+    left :0;
+    height: 100%;
+    width : 10%;
+    border-width: 5px;
+    border-color: #f76c5e;
+}
+.clic {
+    background-color: black;
+}
+
+.popupBackground {
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.popup {
+    display : flex;
+    flex-direction: column;
+    position:absolute;
+    color: #ffeee6;
+    background-color: #f76c5e;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    top :50%;
+    left :50%;
+    width : 30%;
+    height: 50%;
+    padding : 10px;
+    font-size: large;
+
+}
+
+.popup .title {
+    height: 20%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 1000;
+    font-size: 150%;
+
+}
+.popup form{
+    height: 80%;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 120%;
+}
+.popup input {
+    height: 30px;
+    border-radius: 15px;
+    border-color: transparent;
+    margin :10px;
+    font-size: large;
+    color: #f68e5f;
+}
+.popup button{
+    height: 20%;
+    font-weight: 900;
+}
+
+
+
+.active {
+    display: flex !important;
+}
+

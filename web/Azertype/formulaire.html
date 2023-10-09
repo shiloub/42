@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+	    <title>Formulaire</title>
+	    <link href="style.css" rel="stylesheet">
+        <script src="scripts/config.js" defer></script>
+        <script src="scripts/script.js" defer></script>
+        <script src="scripts/main.js" defer></script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <main>
+            <form method="get" action="">
+                <div class ="get_prenom">
+                    <label for="prenom">Prenom</label> : <input type="text" name="prenom" id="prenom" placeholder="Maxime" size="9"><br>
+                </div>
+                <div>
+                    <label for="mail">E-mail</label>
+                    <input type="email" name="mail" id="mail"><br>
+                </div>
+                <div>
+                    <label for="num">N° téléphone</label>
+                    <input type="tel" name="num" id="num"><br>
+                </div>
+                <div>
+                    <label for="content">Satisfaction?</label>
+                    <input type="range" value="90" step="10" name="content" id="content"><br>
+                </div>
+                <div>
+                    <label for="Avis">Un avis?</label><br>
+                    <textarea name="Avis" id="Avis" cols="15" rows="5" placeholder="SUPER SITE !"></textarea>
+                </div>
+            </form>
+        <form method="get" action="">
+            <p>
+                Qu'aimez vous manger ?<br>
+                <div><input type="checkbox" name="frites" id="frites"> <label for="frites">Frites</label><br></div>
+                <div><input type="checkbox" name="steak" id="steak"> <label for="steak">Steak</label><br></div>
+                <div><input type="checkbox" name="epinards" id="epinards"> <label for="epinards">Épinards</label><br></div>
+                <div><input type="checkbox" name="huitres" id="huitres"> <label for="huitres">Huitres</label></div>
+            </p>
+            <p>
+                Quel Age avez vous ?
+                <div><input type="radio" name="age" value="inf18">
+                <label for="inf18">Moins de 18 ans</label></div>
+                <div><input type="radio" name="age" value="18-25">
+                <label for="18-25">Entre 18 et 25 ans</label></div>
+                <div><input type="radio" name="age" value="sup25">
+                <label for="sup25">Plus de 25 ans</label></div>
+            </p>
+            <p>
+                <label for="pays">Dans quel pays habitez-vous ?</label><br>
+                <select name="pays" id="pays">
+                    <option value="espagne">Espagne</option>
+                    <option value="royaume-uni">Royaume-Uni</option>
+                    <option value="canada">Canada</option>
+                    <option value="japon">Japon</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </p>
+        </form>
+        </main>
+</html>

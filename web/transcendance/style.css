@@ -8,3 +8,14 @@
     padding: 20px;
     text-shadow: 5px 8px #0000006b
 }
+.connection {
+    padding-top : 10px;
+    padding-bottom : 10px;
+    position : relative;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.397);
+    left : 35%;
+    width: 30%;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 255, 0.384);
+}
