@@ -10,23 +10,24 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
-const bookmark_module_1 = require("./bookmark/bookmark.module");
 const prisma_module_1 = require("./prisma/prisma.module");
 const config_1 = require("@nestjs/config");
-const events_module_1 = require("./events/events.module");
+const gateway_module_1 = require("./gateway/gateway.module");
+const friend_module_1 = require("./friend/friend.module");
+const channel_module_1 = require("./channel/channel.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule,
+        imports: [
+            gateway_module_1.GatewayModule,
+            auth_module_1.AuthModule,
             user_module_1.UserModule,
-            bookmark_module_1.BookmarkModule,
             prisma_module_1.PrismaModule,
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
-            }),
-            events_module_1.EventsModule,
+            }), friend_module_1.FriendModule, channel_module_1.ChannelModule,
         ],
         controllers: [],
         providers: [],

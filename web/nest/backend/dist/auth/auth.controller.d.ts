@@ -9,8 +9,8 @@ export declare class AuthController {
         updatedAt: Date;
         email: string;
         hash: string;
-        firstName: string;
-        lastName: string;
+        login: string;
+        socket: string;
     }>;
     signin(dto: AuthDto): Promise<{
         access_token: string;

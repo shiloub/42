@@ -1,69 +1,47 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState , useEffect} from 'react';
+import Auth_field from './Auth'
+import Home from './Home'
 import './App.css';
+import io from 'socket.io-client';
 
-function Input_field({text, value, onChange}){
-  return (
-    <>
-      <input type="text" placeholder={text} value={value} onChange={onChange}/>
-    </>
-  );
-}
-
-function Button({ value, handleClick })
-{
-  return (
-    <button className='connection_button' onClick={handleClick}>
-      {value}
-    </button>
-  )
+function getCookie(name: String) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
 
-function Auth_field(){
-  const [pseudo, setPseudo] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  function signin(){
-    const userData = {
-      email: email,
-      pseudo: pseudo,
-      password: password,
-    }
-    console.log('signin', pseudo, email, password);
-    axios.post('')
-  }
-  function signup(){
-    console.log('signup', pseudo, email, password);
-  }
-
-  return (
-    <div className='auth_field'>
-      <div className='pseudo_field'>
-        <Input_field text="pseudo" value={pseudo} onChange={(e) => setPseudo(e.target.value)}/>
-      </div>
-      <div className='email_field'>
-        <Input_field text="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-      </div>
-      <div className='password_field'>
-        <Input_field text="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-      </div>
-      <div className='auth_selection'>
-        <Button value={"Login"} handleClick={() => signin()}/>
-        <Button value={"Signup"} handleClick={() => signup()}/>
-      </div>
-    </div>
-  );
-}
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [socket, setSocket] = useState(null);
+  function handleLogin(){
+    setIsLogin(true);
+    
+  }
+  useEffect(() => {
+    const socket = io('http://localhost:3333');
+    setSocket(socket);
+    socket.on('notification', (data) => {
+      console.log('nouvelle notif :', data);
+    })
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  function handleMessage(){
+    console.log('nouveau message recu !');
+  }
   return (
     <>
       <h1>TRANSCENDANCE</h1>
       <main>
         <div className='app'>
-          <Auth_field />
+          {!isLogin ? (<Auth_field onLogin={() => handleLogin()} socket={socket}/>)
+            : (<Home socket={socket}/>)
+          }
         </div>
       </main>
     </>

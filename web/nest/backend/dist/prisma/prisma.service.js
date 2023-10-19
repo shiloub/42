@@ -15,6 +15,7 @@ const config_1 = require("@nestjs/config");
 const client_1 = require("@prisma/client");
 let PrismaService = class PrismaService extends client_1.PrismaClient {
     constructor(config) {
+        console.log('config', config.get('DATABASE_URL'));
         super({
             datasources: {
                 db: {

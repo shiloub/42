@@ -14,8 +14,8 @@ export declare class JwtStrategy extends JwtStrategy_base {
         updatedAt: Date;
         email: string;
         hash: string;
-        firstName: string;
-        lastName: string;
+        login: string;
+        socket: string;
     }>;
 }
 export {};

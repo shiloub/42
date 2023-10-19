@@ -1,20 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from 'src/auth/auth.module';
 import { UserModule } from './user/user.module';
-import { BookmarkModule } from './bookmark/bookmark.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
-import { EventsModule } from './events/events.module';
+import { GatewayModule } from './gateway/gateway.module';
+import { FriendModule } from './friend/friend.module';
+import { ChannelModule } from './channel/channel.module';
 
 @Module({
-  imports: [AuthModule,
+  imports: [
+    GatewayModule,
+    AuthModule,
      UserModule, 
-     BookmarkModule, 
      PrismaModule, 
      ConfigModule.forRoot({
       isGlobal: true,
-     }), 
-     EventsModule,
+     }), FriendModule, ChannelModule, 
     ],
   controllers: [],
   providers: [],
