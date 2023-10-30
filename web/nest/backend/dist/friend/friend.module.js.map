@@ -1,1 +1,0 @@
-{"version":3,"file":"friend.module.js","sourceRoot":"","sources":["../../src/friend/friend.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,qDAAiD;AACjD,2DAAuD;AACvD,gDAAgD;AAMzC,IAAM,YAAY,GAAlB,MAAM,YAAY;CAAG,CAAA;AAAf,oCAAY;uBAAZ,YAAY;IAJxB,IAAA,eAAM,EAAC;QACN,SAAS,EAAE,CAAC,8BAAa,EAAE,mBAAS,CAAC;QACrC,WAAW,EAAE,CAAC,oCAAgB,CAAC;KAChC,CAAC;GACW,YAAY,CAAG"}
