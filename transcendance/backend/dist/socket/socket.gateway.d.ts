@@ -10,6 +10,6 @@ export declare class SocketGateway implements OnGatewayConnection, OnGatewayDisc
     private connectedClients;
     handleConnection(client: Socket): void;
     handleDisconnect(client: Socket): void;
-    sendEvent(login: string, eventName: string, data: any): void;
+    sendEvent(username: string, eventName: string, data: any): void;
     handleMessage(client: Socket, payload: any): Promise<void>;
 }

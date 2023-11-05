@@ -27,6 +27,14 @@ let UserService = class UserService {
         });
         return (user.id);
     }
+    async getUsernameByLogin(login) {
+        const user = await this.prisma.user.findFirst({
+            where: {
+                login,
+            }
+        });
+        return (user.username);
+    }
     async getLoginById(id) {
         const user = await this.prisma.user.findUniqueOrThrow({
             where: {

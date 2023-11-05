@@ -84,6 +84,7 @@ let ChannelController = class ChannelController {
             const leaverId = await this.userService.getIdByLogin(channelLeaveDto.login);
             const channelId = await this.channelService.getIdByName(channelLeaveDto.name);
             await this.channelService.leaveChan(leaverId, channelId, channelLeaveDto.login);
+            const username = await this.userService.getUsernameByLogin(channelLeaveDto.login);
             const socketService = this.socketRef.get(socket_gateway_1.SocketGateway, { strict: false });
             socketService.sendEvent(channelLeaveDto.login, "kicked", null);
         }

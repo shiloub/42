@@ -20,8 +20,8 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   handleConnection(client: Socket) {
     console.log('je connecte un client socket');
-    const login = client.handshake.query.login as string;
-    this.connectedClients.set(login, client);
+    const username = client.handshake.query.username as string;
+    this.connectedClients.set(username, client);
   }
 
   handleDisconnect(client: Socket) {
@@ -33,11 +33,13 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
-  sendEvent(login: string, eventName: string, data: any) {
-    const socket = this.connectedClients.get(login);
+  sendEvent(username: string, eventName: string, data: any) {
+    const socket = this.connectedClients.get(username);
     if (socket)
       socket.emit(eventName, data);
   }
+
+  //a changer: dans les messages il ne faut pas stocker senderLogin mais senderUsername, car il ne change pas.(pour les blocked)
 
   @SubscribeMessage('message')
   async handleMessage(client: Socket, payload: any) {
@@ -59,7 +61,7 @@ export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
           const message = await messageservice.createMessage(payload.content, payload.senderLogin, payload.channelName);
           console.log('jenvoie le message');
           payload.userList.map((user: any) => {
-              this.connectedClients.get(user.login).emit('message', message);
+              this.connectedClients.get(user.username).emit('message', message);
           })
         }
         else {

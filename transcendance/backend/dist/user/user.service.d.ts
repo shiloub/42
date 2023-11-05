@@ -14,6 +14,7 @@ export declare class UserService {
         twoFaSecret: string;
     }>;
     getIdByLogin(login: string): Promise<number>;
+    getUsernameByLogin(login: string): Promise<string>;
     getLoginById(id: number): Promise<string>;
     getUser(login: string): Promise<User>;
     addFriend(login: string, target: string): Promise<User>;

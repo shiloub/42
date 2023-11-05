@@ -25,8 +25,8 @@ let SocketGateway = class SocketGateway {
     }
     handleConnection(client) {
         console.log('je connecte un client socket');
-        const login = client.handshake.query.login;
-        this.connectedClients.set(login, client);
+        const username = client.handshake.query.username;
+        this.connectedClients.set(username, client);
     }
     handleDisconnect(client) {
         for (const [userLogin, socket] of this.connectedClients) {
@@ -36,8 +36,8 @@ let SocketGateway = class SocketGateway {
             }
         }
     }
-    sendEvent(login, eventName, data) {
-        const socket = this.connectedClients.get(login);
+    sendEvent(username, eventName, data) {
+        const socket = this.connectedClients.get(username);
         if (socket)
             socket.emit(eventName, data);
     }
@@ -59,7 +59,7 @@ let SocketGateway = class SocketGateway {
                 const message = await messageservice.createMessage(payload.content, payload.senderLogin, payload.channelName);
                 console.log('jenvoie le message');
                 payload.userList.map((user) => {
-                    this.connectedClients.get(user.login).emit('message', message);
+                    this.connectedClients.get(user.username).emit('message', message);
                 });
             }
             else {
