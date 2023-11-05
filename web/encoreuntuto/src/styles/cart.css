@@ -1,0 +1,38 @@
+.lmj_cart {
+	color: white;
+	background-color: #31b572;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 200px;
+}
+
+.lmj_cart_add_button {
+	margin-left: 32px;
+	cursor: pointer;
+}
+
+.lmj_cart_toggle_button {
+	background: none;
+	outline: none;
+	border: none;
+	font-weight: 600;
+	cursor: pointer;
+	align-self: self-start;
+	padding: 0;
+	color: rgb(255, 255, 255);
+}
+
+.lmj_cart_closed {
+	padding: 10px;
+}
+
+.lmj_cart_closed button {
+	color: black;
+	font-size: large;
+	font-weight: 600;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}

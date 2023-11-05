@@ -1,0 +1,17 @@
+.lmj_plant_item_cover {
+	height: 100%;
+	width: 100%;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.lmj_plant_item {
+	margin: 10px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	text-transform: capitalize;
+}
+.lmj_plant_item CareScale {
+	cursor: pointer;
+}

@@ -1,0 +1,7 @@
+.lmj_banner {
+    display: flex;
+    color: rgb(14, 4, 4);
+    text-align: center;
+    padding: 32px;
+    border-bottom: solid 3px black;
+}

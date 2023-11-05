@@ -1,2 +1,2 @@
-let wordlist = ["banane", "pomme", "orange"];
+let wordlist = ["banane", "pomme", "orange", "karaba", "boulette", "lettebou",  "jeannou", "tigre", "mahiba", "lunettes", "jaune", "salope", "gros", "grossophobe"];
 let sentencelist = ["coucou, ca va ?", "comment il va le kiki", "La corde est tendue"];
